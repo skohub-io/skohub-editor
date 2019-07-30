@@ -1,0 +1,228 @@
+.Form {
+  padding: 10px 20px 40px 20px;
+  max-height: 100%;
+  overflow: auto;
+  min-width: 40%;
+  max-width: 40%;
+
+  & .Builder {
+    margin-bottom: 20px;
+  }
+
+  & input {
+    width: 100%;
+    padding: 5px 10px;
+    border: 1px solid var(--border);
+    border-radius: 0;
+  }
+
+  & .asterisk {
+    color: var(--secondary);
+    font-size: 1.3em;
+  }
+
+  & .error {
+    color: var(--secondary);
+    text-transform: capitalize;
+
+    & + input {
+      border-color: var(--secondary);
+    }
+  }
+
+  & .DropdownSelect .dropdownContainer .toggleDropdown {
+    height: 77%;
+  }
+
+  & .List .LocalizedString .Input.text label,
+  & .List.sameAs .Input.text label {
+    display: none;
+  }
+
+  & .Builder > .Fieldset > .label {
+    display: none;
+  }
+
+  & .List {
+
+    & ul {
+      & li {
+        margin-bottom: 10px;
+      }
+
+      &.optionsContainer li {
+        margin-bottom: 0;
+      }
+
+      & li:last-child {
+        margin-bottom: 0;
+        border-bottom: 0;
+      }
+    }
+  }
+
+  & .optionsContainer ul li {
+    margin-bottom: 0;
+
+    & label {
+      border-bottom: 1px solid var(--border);
+
+      & > i {
+        padding-right: 5px;
+      }
+    }
+  }
+
+  & .DropdownSelect {
+
+    & .toggleDropdown {
+      color: var(--text);
+      border: 1px solid var(--border);
+      background-color: var(--mainLight);
+      color: text;
+      padding: 7px 10px;
+      position: relative;
+      padding-right: 30px;
+      font-weight: 600;
+
+      &.error {
+        text-transform: capitalize;
+        color: var(--secondary);
+
+        &::after {
+          color: var(--base);
+        }
+      }
+
+      &::after {
+        font-family: FontAwesome;
+        content: "\F078";
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-51%);
+        pointer-events: none;
+      }
+    }
+
+    & .dropdownList {
+      z-index: 2;
+      width: 400px;
+      top: calc(100% + 5px);
+      margin-bottom: 20px;
+      background-color: white;
+      border: 1px solid var(--border);
+      max-width: calc(33vw);
+
+      & > .filterContainer {
+        position: relative;
+
+        & input[type=text] {
+          border: none;
+          border-radius: 0;
+          margin: 0;
+          padding-right: 30px;
+          border-bottom: 1px solid var(--border);
+        }
+
+        &::after {
+          font-family: FontAwesome;
+          content: "\f002";
+          position: absolute;
+          right: 10px;
+          top: 50%;
+          transform: translateY(-55%);
+          pointer-events: none;
+          color: var(--main);
+        }
+      }
+
+      & li {
+        border-bottom: 1px solid var(--border);
+
+        & label {
+          display: block;
+          padding: 5px 10px;
+
+          &:hover,
+          &:focus {
+            background-color: var(--mainLight);
+            color: var(--text);
+          }
+        }
+      }
+
+      & li:last-child {
+
+        & label {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+
+  & .selectedContainer {
+    background-color: var(--mainLight);
+    color: var(--base);
+    position: relative;
+
+    & label {
+      padding: 7px 10px;
+      padding-right: 30px;
+      color: var(--base);
+      font-weight: 600;
+      height: 100%;
+      display: flex;
+      align-items: center;
+
+      &:hover,
+      &:focus {
+        background-color: #FFEDC5;
+      }
+
+      & > i {
+        padding-right: 5px;
+      }
+    }
+
+    &::after {
+      font-family: "Source Sans Pro', futura-pt, sans-serif";
+      content: "×";
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      -webkit-transform: translateY(-51%);
+      transform: translateY(-51%);
+      color: var(--base);
+      pointer-events: none;
+      font-weight: 600;
+      font-size: 28px;
+    }
+  }
+
+
+  & .newItemWrapper {
+    & > label {
+      color: var(--main);
+      padding: 0;
+
+      &:hover,
+      &:focus {
+        color: var(--secondary);
+      }
+    }
+  }
+
+  & .Textarea.description textarea {
+    min-width: 100%;
+    resize: vertical;
+    border: 1px solid var(--border);
+    padding: 5px 10px;
+  }
+
+
+  & .buttons {
+    margin-bottom: 25px;
+  }
+
+}
