@@ -4,6 +4,7 @@ import Form from './JSONPointerForm/Form'
 import Builder from './JSONPointerForm/Builder'
 import JsonSchema from './JSONPointerForm/JsonSchema'
 import validate from './JSONPointerForm/validate'
+import SkohubLookup from './JSONPointerForm/SkohubLookup'
 
 import Header from './Header'
 import Preview from './Preview'
@@ -52,10 +53,11 @@ class SkohubEditor extends React.Component {
               >
                 <Builder
                   schema={JsonSchema(schema).get(`/`)}
+                  widgets={{SkohubLookup}}
                 />
-                {/* <div className="buttons">
+                <div className="buttons">
                   <button className="btn" type="submit">Save</button>
-                </div> */}
+                </div>
               </Form>
 
               {Object.values(json).length ? (

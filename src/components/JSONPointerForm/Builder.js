@@ -66,6 +66,8 @@ class Builder extends React.Component {
     if (schema._widget && widgetsObj[schema._widget]) {
       const Widget = widgetsObj[schema._widget]
       return <Widget {...props} schema={schema} />
+    } else if (schema._widget) {
+      console.warn("Widget not found", schema._widget)
     }
 
     switch (schema.type) {
