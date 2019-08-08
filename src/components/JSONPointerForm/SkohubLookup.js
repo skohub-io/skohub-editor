@@ -62,7 +62,7 @@ const SkohubLookup = (props) => {
   const [expanded, setExpanded] = useState(false)
 
   const { schema, value, setValue, title, property, errors, name, required, formId, translate } = props
-  const inScheme = schema.properties.inScheme.properties.id.enum.shift()
+  const inScheme = schema.properties.inScheme.properties.id.enum[0].replace(/^https?:/, '')
 
   useEffect(() => {
     fetch(inScheme, {
