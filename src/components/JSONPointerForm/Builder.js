@@ -56,7 +56,8 @@ class Builder extends React.Component {
     const props = {
       title: schema.title,
       description: schema.description,
-      placeholder: schema._display && schema._display.placeholder,
+      // placeholder: schema._display && schema._display.placeholder,
+      display: schema._display || {},
       config,
       className,
       translate,
