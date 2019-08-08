@@ -54,11 +54,13 @@ class DropdownSelect extends React.Component {
         className={`DropdownSelect ${property || ''} ${className}${errors.length ? ' hasErrors' : ''}`.trim()}
         aria-labelledby={`${formId}-${name}-label`}
       >
-        <div className={`label ${required ? 'required' : ''}`.trim()} id={`${formId}-${name}-label`}>
-          {translate(title)}
-          &nbsp;
-          {required ? <span className="asterisk" title={translate('This is a required field!')}>*</span> : ''}
-        </div>
+        {title &&
+          <div className={`label ${required ? 'required' : ''}`.trim()} id={`${formId}-${name}-label`}>
+            {translate(title)}
+            &nbsp;
+            {required ? <span className="asterisk" title={translate('This is a required field!')}>*</span> : ''}
+          </div>
+        }
         <span className="fieldDescription">
           {(description
           && translate(description)
