@@ -4,8 +4,6 @@ import FlexSearch from 'flexsearch'
 
 import withFormData from './withFormData'
 
-const t = localized => localized[Object.keys(localized)[0]]
-
 const getNestedItems = item => {
   let ids = [item.id]
   if (item.narrower) {
@@ -16,7 +14,7 @@ const getNestedItems = item => {
   return ids
 }
 
-const NestedList = ({ items, filter, highlight, setValue, setQuery, setExpanded }) => {
+const NestedList = ({ items, filter, highlight, setValue, setQuery, setExpanded, translate }) => {
   const filteredItems = filter
     ? items.filter(item => !filter || filter.some(filter => getNestedItems(item).includes(filter)))
     : items
@@ -29,7 +27,7 @@ const NestedList = ({ items, filter, highlight, setValue, setQuery, setExpanded 
         >
           <span
             dangerouslySetInnerHTML={{
-              __html: t(item.prefLabel).replace(highlight, str => `<strong>${str}</strong>`)
+              __html: translate(item.prefLabel).replace(highlight, str => `<strong>${str}</strong>`)
             }}
             onClick={() => {
               setValue({
@@ -48,6 +46,7 @@ const NestedList = ({ items, filter, highlight, setValue, setQuery, setExpanded 
               setValue={setValue}
               setQuery={setQuery}
               setExpanded={setExpanded}
+              translate={translate}
             />
           }
         </li>
@@ -62,7 +61,7 @@ const SkohubLookup = (props) => {
   const [scheme, setScheme] = useState(null)
   const [expanded, setExpanded] = useState(false)
 
-  const { schema, value, setValue, title, property, errors, name, required, formId } = props
+  const { schema, value, setValue, title, property, errors, name, required, formId, translate } = props
   const inScheme = schema.properties.inScheme.properties.id.enum.shift()
 
   useEffect(() => {
@@ -117,7 +116,7 @@ const SkohubLookup = (props) => {
                     setQuery(null)
                   }, 250
                 )}
-                placeholder={`${title} auswählen`}
+                placeholder={title}
               />
               {expanded &&
                 <NestedList
@@ -127,6 +126,7 @@ const SkohubLookup = (props) => {
                     setValue={setValue}
                     setQuery={setQuery}
                     setExpanded={setExpanded}
+                    translate={translate}
                   />
               }
             </div>
