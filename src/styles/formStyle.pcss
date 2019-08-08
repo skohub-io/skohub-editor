@@ -223,4 +223,60 @@
     margin-bottom: 25px;
   }
 
+  & .SkohubLookup {
+
+    & .skohubLookupSelectedValue {
+      background-color: var(--mainLight);
+      padding: 5px 10px;
+      color: var(--base);
+      font-weight: bold;
+      position: relative;
+
+      &:hover {
+        background-color: #FFEDC5;
+      }
+
+      &:after {
+        font-family: "Source Sans Pro', futura-pt, sans-serif";
+        content: "×";
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        -webkit-transform: translateY(-51%);
+        transform: translateY(-51%);
+        color: var(--base);
+        pointer-events: none;
+        font-weight: 600;
+        font-size: 28px;
+      }
+    }
+
+    & .skohubLookupContent > ul {
+      border: 1px solid var(--border);
+
+      /* Nested levels vased on the inital padding
+      of 10 and incrementing by 5 on each level */
+      & > li > span {
+        & + ul > li > span {
+          padding-left: 15px;
+          & + ul > li > span {
+            padding-left: 20px;
+            & + ul > li > span {
+              padding-left: 25px;
+              & + ul > li > span {
+                padding-left: 30px;
+              }
+            }
+          }
+        }
+      }
+
+      & span {
+        display: flex;
+        padding: 10px;
+        border-bottom: 1px solid var(--border);
+      }
+    }
+  }
+
 }

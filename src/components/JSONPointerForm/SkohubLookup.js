@@ -98,11 +98,10 @@ const SkohubLookup = (props) => {
         {title}
       </div>
       {scheme &&
-        <div>
-          {value ? (
-            <div onClick={() => setValue(undefined)}>{t(value.prefLabel)}</div>
+          value ? (
+            <div className="skohubLookupSelectedValue" onClick={() => setValue(undefined)}>{translate(value.prefLabel)}</div>
           ) : (
-            <div>
+            <div className="skohubLookupContent">
               <input
                 value={query || ''}
                 type="text"
@@ -130,8 +129,7 @@ const SkohubLookup = (props) => {
                   />
               }
             </div>
-          )}
-        </div>
+          )
       }
     </div>
   )
