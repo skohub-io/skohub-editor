@@ -27,6 +27,7 @@ class Form extends React.Component {
       formData: props.data,
       formErrors: [],
     }
+    this.submitCallbacks = {}
     this.id = props.id || uniqueId()
     this.lastUpdate = ''
     this.lastOp = null
@@ -40,6 +41,7 @@ class Form extends React.Component {
       getValidationErrors: this.getValidationErrors.bind(this),
       shouldFormComponentUpdate: this.shouldFormComponentUpdate.bind(this),
       shouldFormComponentFocus: this.shouldFormComponentFocus.bind(this),
+      registerSubmitCallback: this.registerSubmitCallback.bind(this),
     }
   }
 
@@ -91,6 +93,10 @@ class Form extends React.Component {
     return this.lastUpdate === name
   }
 
+  registerSubmitCallback(name, callback) {
+    this.submitCallbacks[name] = callback
+  }
+
   render() {
     const {
       action, method, validate, onError, onSubmit, children,
@@ -106,12 +112,12 @@ class Form extends React.Component {
           e.preventDefault()
           this.lastUpdate = ''
           this.lastOp = null
-          validate(prune(formData))
-            ? onSubmit(formData)
-            : this.setState(
-              { formErrors: validate.errors },
-              () => onError(validate.errors)
-            )
+          if (validate(prune(formData))) {
+            onSubmit(formData)
+            Object.values(this.submitCallbacks).forEach(callback => callback(formData))
+          } else {
+            this.setState({ formErrors: validate.errors }, () => onError(validate.errors))
+          }
         }}
       >
         {children}
@@ -150,6 +156,7 @@ Form.childContextTypes = {
   getValidationErrors: PropTypes.func,
   shouldFormComponentUpdate: PropTypes.func,
   shouldFormComponentFocus: PropTypes.func,
+  registerSubmitCallback: PropTypes.func,
 }
 
 export default Form

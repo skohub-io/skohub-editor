@@ -27,6 +27,7 @@ const withFormData = (BaseComponent) => {
     render() {
       const {
         getValue, formId, setValue, getValidationErrors, shouldFormComponentFocus,
+        registerSubmitCallback
       } = this.context
 
       return (
@@ -37,6 +38,7 @@ const withFormData = (BaseComponent) => {
           setValue={(value, prune) => setValue(this.name, value, prune)}
           errors={getValidationErrors(this.name)}
           shouldFormComponentFocus={shouldFormComponentFocus(this.name)}
+          registerSubmitCallback={callback => registerSubmitCallback(this.name, callback)}
           {...this.props}
         />
       )
@@ -63,6 +65,7 @@ const withFormData = (BaseComponent) => {
     shouldFormComponentUpdate: PropTypes.func,
     shouldFormComponentFocus: PropTypes.func,
     formId: PropTypes.string,
+    registerSubmitCallback: PropTypes.func,
   }
 
   return formComponent

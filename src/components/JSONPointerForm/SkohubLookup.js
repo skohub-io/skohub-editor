@@ -55,14 +55,35 @@ const NestedList = ({ items, filter, highlight, setValue, setQuery, setExpanded,
   )
 }
 
+const SchemeMap = scheme => ({
+  '//purl.org/dcx/lrmi-vocabs/educationalAudienceRole/': 'https://test.skohub.io/literarymachine/skos/purl.org/dcx/lrmi-vocabs/educationalAudienceRole/',
+  '//purl.org/dcx/lrmi-vocabs/interactivityType/': 'https://test.skohub.io/literarymachine/skos/purl.org/dcx/lrmi-vocabs/interactivityType/'
+}[scheme] || scheme)
+
 const SkohubLookup = (props) => {
   const [index, setIndex] = useState(FlexSearch.create('speed'))
   const [query, setQuery] = useState(null)
   const [scheme, setScheme] = useState(null)
   const [expanded, setExpanded] = useState(false)
 
-  const { schema, value, setValue, title, property, errors, name, required, formId, translate } = props
-  const inScheme = schema.properties.inScheme.properties.id.enum[0].replace(/^https?:/, '')
+  const {
+    schema, value, setValue, title, property, errors, name, required, formId, translate,
+    registerSubmitCallback
+  } = props
+  const inScheme = SchemeMap(schema.properties.inScheme.properties.id.enum[0].replace(/^https?:/, ''))
+
+  value && registerSubmitCallback(data => {
+    fetch(`https://test.skohub.io/inbox?target=${encodeURIComponent(value.id)}`, {
+      method: 'post',
+      mode: 'cors',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/ld+json'
+      },
+      body: JSON.stringify(data)
+    }).then(response => response.json())
+      .then(console.log)
+  })
 
   useEffect(() => {
     fetch(inScheme, {
@@ -97,9 +118,11 @@ const SkohubLookup = (props) => {
       >
         {title}
       </div>
-      {scheme &&
+      {scheme && (
           value ? (
-            <div className="skohubLookupSelectedValue" onClick={() => setValue(undefined)}>{translate(value.prefLabel)}</div>
+            <div className="skohubLookupSelectedValue" onClick={() => setValue(undefined)}>
+              {translate(value.prefLabel)}
+            </div>
           ) : (
             <div className="skohubLookupContent">
               <input
@@ -130,7 +153,7 @@ const SkohubLookup = (props) => {
               }
             </div>
           )
-      }
+      )}
     </div>
   )
 }
