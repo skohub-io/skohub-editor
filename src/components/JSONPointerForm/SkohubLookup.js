@@ -57,7 +57,9 @@ const NestedList = ({ items, filter, highlight, setValue, setQuery, setExpanded,
 
 const SchemeMap = scheme => ({
   '//purl.org/dcx/lrmi-vocabs/educationalAudienceRole/': 'https://test.skohub.io/literarymachine/skos/purl.org/dcx/lrmi-vocabs/educationalAudienceRole/',
-  '//purl.org/dcx/lrmi-vocabs/interactivityType/': 'https://test.skohub.io/literarymachine/skos/purl.org/dcx/lrmi-vocabs/interactivityType/'
+  '//purl.org/dcx/lrmi-vocabs/interactivityType/': 'https://test.skohub.io/literarymachine/skos/purl.org/dcx/lrmi-vocabs/interactivityType/',
+  '//oerworldmap.org/assets/json/sectors/': 'https://test.skohub.io/literarymachine/skos/oerworldmap.org/assets/json/sectors/',
+  '//oerworldmap.org/assets/json/licenses/': 'https://test.skohub.io/literarymachine/skos/oerworldmap.org/assets/json/licenses/'
 }[scheme] || scheme)
 
 const SkohubLookup = (props) => {
