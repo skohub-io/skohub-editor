@@ -174,14 +174,12 @@
       }
 
       & li {
-          display: block;
-          padding: 5px 10px;
+        display: block;
 
-          &:hover,
-          &:focus {
-            background-color: var(--base);
-            color: var(--text);
-          }
+        &:hover,
+        &:focus {
+          background-color: var(--base);
+          color: var(--text);
         }
       }
 
@@ -260,6 +258,7 @@
   }
 
   & .SkohubLookup {
+    position: relative;
 
     & .skohubLookupSelectedValue {
       background-color: var(--inputBase);
@@ -291,13 +290,14 @@
 
     & .skohubLookupContent > ul {
       border: 1px solid var(--primary);
-      position: relative;
-      top: -1px;
+      position: absolute;
+      width: 100%;
+      background-color: var(--inputBase);
+      top: calc(100% + 5px);
       z-index: 5;
-      background-color: var
+
       & span:last-child {
         border-bottom: 1px solid var(--primary);
-
       }
 
       /* Nested levels vased on the inital padding
