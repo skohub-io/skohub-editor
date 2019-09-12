@@ -8,7 +8,7 @@ import { objectMap } from '../../common'
 
 const DateTime = ({
   name, value, setValue, errors, title, className,
-  translate, formId, required, placeholder, description,
+  translate, formId, required, display, description,
 }) => (
   <div className={`DateTime ${className}${errors.length ? ' hasErrors' : ''}`}>
     <label
@@ -36,7 +36,7 @@ const DateTime = ({
     ))}
     <div className="Inputs">
       <Cleave
-        placeholder={placeholder}
+        placeholder={display.placeholder}
         options={{
           date: true,
           datePattern: ['Y', 'm', 'd'],
@@ -92,7 +92,7 @@ DateTime.propTypes = {
   translate: PropTypes.func.isRequired,
   formId: PropTypes.string.isRequired,
   required: PropTypes.bool,
-  placeholder: PropTypes.string,
+  display: PropTypes.object,
   description: PropTypes.string,
 }
 
@@ -102,7 +102,7 @@ DateTime.defaultProps = {
   title: '',
   className: '',
   required: false,
-  placeholder: undefined,
+  display: {},
   description: undefined,
 }
 

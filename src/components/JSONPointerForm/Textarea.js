@@ -7,7 +7,7 @@ import { appendOnFocus, objectMap } from '../../common'
 
 const Textarea = ({
   name, value, setValue, errors, property, title, className, translate, shouldFormComponentFocus,
-  formId, required, description,
+  formId, required, description, display
 }) => (
   <div className={`Textarea ${property || ''} ${className} ${errors.length ? 'hasError' : ''}`.trim()}>
     <label
@@ -38,6 +38,7 @@ const Textarea = ({
       autoFocus={shouldFormComponentFocus}
       onFocus={appendOnFocus}
       onChange={e => setValue(e.target.value)}
+      rows={display.rows || 10}
     />
   </div>
 )

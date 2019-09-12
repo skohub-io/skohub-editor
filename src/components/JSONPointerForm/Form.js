@@ -27,6 +27,7 @@ class Form extends React.Component {
       formData: props.data,
       formErrors: [],
     }
+    this.submitCallbacks = {}
     this.id = props.id || uniqueId()
     this.lastUpdate = ''
     this.lastOp = null
@@ -40,6 +41,7 @@ class Form extends React.Component {
       getValidationErrors: this.getValidationErrors.bind(this),
       shouldFormComponentUpdate: this.shouldFormComponentUpdate.bind(this),
       shouldFormComponentFocus: this.shouldFormComponentFocus.bind(this),
+      registerSubmitCallback: this.registerSubmitCallback.bind(this),
     }
   }
 
@@ -57,6 +59,7 @@ class Form extends React.Component {
       this.lastUpdate = name
       jsonPointer.set(prevState.formData, name, value)
       const formData = _prune ? prune(prevState.formData) : prevState.formData
+      this.props.onChange(formData)
       return { formData }
     })
   }
@@ -90,6 +93,10 @@ class Form extends React.Component {
     return this.lastUpdate === name
   }
 
+  registerSubmitCallback(name, callback) {
+    this.submitCallbacks[name] = callback
+  }
+
   render() {
     const {
       action, method, validate, onError, onSubmit, children,
@@ -98,22 +105,19 @@ class Form extends React.Component {
 
     return (
       <form
-        onChange={() => {
-          this.props.onChange(this.state.formData)
-        }}        className="Form"
+        className="Form"
         action={action}
         method={method}
         onSubmit={(e) => {
           e.preventDefault()
-          // this.lastUpdate = ''
-          // this.lastOp = null
-          // validate(prune(formData))
-          //   ? onSubmit(formData)
-          //   : this.setState(
-          //     { formErrors: validate.errors },
-          //     () => console.error(validate.errors)
-          //       || onError(validate.errors),
-          //   )
+          this.lastUpdate = ''
+          this.lastOp = null
+          if (validate(prune(formData))) {
+            onSubmit(formData)
+            Object.values(this.submitCallbacks).forEach(callback => callback(formData))
+          } else {
+            this.setState({ formErrors: validate.errors }, () => onError(validate.errors))
+          }
         }}
       >
         {children}
@@ -128,6 +132,7 @@ Form.propTypes = {
   method: PropTypes.string,
   id: PropTypes.string,
   onSubmit: PropTypes.func,
+  onChange: PropTypes.func,
   onError: PropTypes.func,
   validate: PropTypes.func,
   children: PropTypes.node.isRequired,
@@ -139,6 +144,7 @@ Form.defaultProps = {
   method: 'get',
   id: undefined,
   onSubmit: formData => console.log(formData),
+  onChange: formData => console.info(formData),
   onError: formErrors => console.error(formErrors),
   validate: () => true,
 }
@@ -150,6 +156,7 @@ Form.childContextTypes = {
   getValidationErrors: PropTypes.func,
   shouldFormComponentUpdate: PropTypes.func,
   shouldFormComponentFocus: PropTypes.func,
+  registerSubmitCallback: PropTypes.func,
 }
 
 export default Form

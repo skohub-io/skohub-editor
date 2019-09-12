@@ -20,7 +20,7 @@ const castValue = (target) => {
 
 const Input = ({
   type, name, value, setValue, errors, property, title, className, translate,
-  shouldFormComponentFocus, formId, required, placeholder, description,
+  shouldFormComponentFocus, formId, required, display, description,
 }) => (
   <div className={`Input ${type} ${property || ''} ${className} ${errors.length ? 'hasError' : ''}`.trim()}>
     <label
@@ -51,7 +51,7 @@ const Input = ({
       name={name}
       value={value}
       id={`${formId}-${name}`}
-      placeholder={translate(placeholder)}
+      placeholder={translate(display.placeholder || '')}
       autoFocus={shouldFormComponentFocus}
       onFocus={appendOnFocus}
       onChange={e => setValue(castValue(e.target))}
@@ -76,7 +76,7 @@ Input.propTypes = {
   shouldFormComponentFocus: PropTypes.bool,
   formId: PropTypes.string.isRequired,
   required: PropTypes.bool,
-  placeholder: PropTypes.string,
+  display: PropTypes.object,
   description: PropTypes.string,
 }
 
@@ -89,7 +89,7 @@ Input.defaultProps = {
   className: '',
   shouldFormComponentFocus: false,
   required: false,
-  placeholder: undefined,
+  display: {},
   description: undefined,
 }
 
