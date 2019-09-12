@@ -105,7 +105,7 @@ class Form extends React.Component {
 
     return (
       <form
-        className="Form"
+        className="Form block"
         action={action}
         method={method}
         onSubmit={(e) => {
