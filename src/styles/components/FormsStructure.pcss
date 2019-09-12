@@ -1,0 +1,162 @@
+.Form {
+
+  & input {
+    width: 100%;
+    padding: 5px 10px;
+  }
+
+  & ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    & > li {
+      & label {
+        padding: 10px;
+        padding-left: 10px;
+      }
+
+      & ul > li {
+
+        & label {
+          padding-left: 20px;
+        }
+
+        & ul > li {
+
+          & label {
+            padding-left: 30px;
+          }
+
+          & ul > li {
+
+            & label {
+              padding-left: 40px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  & div.label,
+  & .Input.text > label,
+  & .DateTime > label,
+  & .Input.number > label {
+    font-weight: 600;
+    padding: 10px 0;
+    display: blocK;
+    padding-top: 20px;
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  & .List.name,
+  & .List.displayName,
+  & .List.alternateName {
+    & > ul {
+      margin: 0;
+      padding: 0;
+
+      & > li {
+        margin-top: 10px;
+      }
+
+      & > li:first-child {
+        margin-top: 0;
+      }
+
+      & .LocalizedString {
+        display: flex;
+
+        & .Input.text {
+          flex: 3;
+        }
+      }
+    }
+  }
+
+  & .DropdownSelect,
+  & .RemoteSelect {
+    & input[type=checkbox] {
+      display: none;
+    }
+  }
+
+  & .DropdownSelect {
+    position: relative;
+    flex: 1;
+    min-width: 20%;
+
+    & > .label {
+      display: none;
+    }
+
+    & .dropdownContainer {
+      height: 100%;
+
+      & .toggleDropdown {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    & .dropdownList {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      right: 0;
+      z-index: 1;
+      max-height: 300px;
+      width: 100%;
+
+      & .optionsContainer {
+        overflow: auto;
+        flex: 1;
+      }
+    }
+  }
+
+  & .optionsContainer {
+    max-height: 200px;
+    overflow: auto;
+
+    & input[type=checkbox] {
+      display: none;
+    }
+
+    & li > label {
+      display: block;
+    }
+  }
+
+  & .newItem,
+  & input[type=checkbox].formControl:checked + label,
+  & input[type=checkbox].formControl {
+    display: none;
+    margin-top: 10px;
+  }
+
+  & input[type=checkbox].formControl:not(:checked) + label,
+  & input[type=checkbox].formControl:checked ~ .newItem {
+    display: block;
+  }
+
+  & .DateTime .Inputs {
+    display: flex;
+
+    & input:nth-child(2) {
+      margin-left: 15px;
+    }
+  }
+
+  & .Builder.optionalFieldsHidden .optionalFields {
+    display: none;
+  }
+
+  & .Builder .btn {
+    margin-top: 20px;
+  }
+}

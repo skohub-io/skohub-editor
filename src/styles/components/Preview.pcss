@@ -1,0 +1,44 @@
+.Preview {
+  flex: 2;
+  border-left: 2px solid var(--border);
+  max-height: 100%;
+  overflow: auto;
+  margin-bottom: 20px;
+  background-color: #F9F9F9;
+  height: 100%;
+  padding: 20px;
+  margin: 0;
+
+  & .options {
+    margin-bottom: 20px;
+    text-align: right;
+
+    & > input[type=button] {
+      margin-left: 10px;
+    }
+  }
+
+  & pre {
+    margin: 0;
+    margin-bottom: 25px;
+  }
+}
+
+.noPreview {
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  border-left: 2px solid lightgrey;
+
+  & span {
+    animation: move .5s infinite alternate;
+  }
+}
+
+@keyframes move {
+   0% { transform: translateX(0); }
+   100% { transform: translateX(-10px)}
+}

@@ -1,0 +1,60 @@
+:root {
+  --text: #F9F9F9;
+  --base: #2c8898;
+  --secondary: #FF2266;
+  --text: #4a4a4a;
+  --border: lightgrey;
+  --colorBorder: #393;
+  --main: #2c8898;
+  --mainLight: #F1F1F1;
+}
+
+html {
+  box-sizing: border-box;
+  word-wrap: break-word;
+}
+
+body {
+  font-size: 16px;
+  font-family: futura-pt,sans-serif,sans-serif;
+  color: var(--text);
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  display: flex;
+  overflow-x: auto;
+  flex: 1;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.btn,
+input[type=button],
+input[type=submit],
+input[type=url] {
+  background-color: var(--mainLight);
+  border: solid 1px #393;
+  box-shadow: 4px 3px 0 0 #0fc;
+  padding: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: var(--main);
+}
+
+img {
+  max-width: 100%;
+}
