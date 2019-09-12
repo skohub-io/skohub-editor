@@ -88,7 +88,6 @@
 
       &.optionsContainer li {
         margin-bottom: 0;
-        border-bottom: 1px solid var(--primary);
       }
 
       & li:last-child {
@@ -175,6 +174,10 @@
 
       & li {
         display: block;
+
+        & label {
+          border-bottom: 1px solid var(--primary);
+        }
 
         &:hover,
         &:focus {
