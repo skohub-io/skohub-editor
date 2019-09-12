@@ -4,6 +4,8 @@
   overflow: auto;
   min-width: 40%;
   max-width: 40%;
+  margin-right: 10px;
+  padding-top: 0;
 
   & .Builder {
     margin-bottom: 20px;
@@ -17,16 +19,16 @@
   }
 
   & .asterisk {
-    color: var(--secondary);
+    color: var(--error);
     font-size: 1.3em;
   }
 
   & .error {
-    color: var(--secondary);
+    color: var(--error);
     text-transform: capitalize;
 
     & + input {
-      border-color: var(--secondary);
+      border-color: var(--error);
     }
   }
 
@@ -41,6 +43,40 @@
 
   & .Builder > .Fieldset > .label {
     display: none;
+  }
+
+  & .Fieldset > div > .List > ul {
+    padding-left: 15px;
+    border-left: 1px solid var(--primary);
+    margin-left: 5px;
+
+    & > li {
+      position: relative;
+
+      & > div {
+        padding-left: 15px;
+      }
+
+      &:before {
+        position: absolute;
+        content: "";
+        height: 100%;
+        width: 1px;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: var(--primary);
+      }
+
+      &:after {
+        position: absolute;
+        content: "";
+        height: 1px;
+        width: 18px;
+        top: 50%;
+        left: -17px;
+        background-color: var(--primary);
+      }
+    }
   }
 
   & .List {
@@ -65,7 +101,7 @@
     margin-bottom: 0;
 
     & label {
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--primary);
 
       & > i {
         padding-right: 5px;
@@ -77,8 +113,6 @@
 
     & .toggleDropdown {
       color: var(--text);
-      border: 1px solid var(--border);
-      background-color: var(--mainLight);
       color: text;
       padding: 7px 10px;
       position: relative;
@@ -87,7 +121,7 @@
 
       &.error {
         text-transform: capitalize;
-        color: var(--secondary);
+        color: var(--error);
 
         &::after {
           color: var(--base);
@@ -110,18 +144,21 @@
       top: calc(100% + 5px);
       margin-bottom: 20px;
       background-color: white;
-      border: 1px solid var(--border);
+      border: 1px solid var(--primary);
       max-width: calc(33vw);
+
+      & .optionsContainer {
+        border: 1px solid var(--primary);
+      }
 
       & > .filterContainer {
         position: relative;
 
         & input[type=text] {
-          border: none;
           border-radius: 0;
           margin: 0;
           padding-right: 30px;
-          border-bottom: 1px solid var(--border);
+          box-shadow: none;
         }
 
         &::after {
@@ -131,22 +168,21 @@
           top: 50%;
           transform: translateY(-55%);
           pointer-events: none;
-          color: var(--main);
+          color: var(--primary);
         }
       }
 
       & li {
-        border-bottom: 1px solid var(--border);
+        display: block;
 
         & label {
-          display: block;
-          padding: 5px 10px;
+          border-bottom: 1px solid var(--primary);
+        }
 
-          &:hover,
-          &:focus {
-            background-color: var(--mainLight);
-            color: var(--text);
-          }
+        &:hover,
+        &:focus {
+          background-color: var(--base);
+          color: var(--text);
         }
       }
 
@@ -160,14 +196,16 @@
   }
 
   & .selectedContainer {
-    background-color: var(--mainLight);
+    background-color: var(--inputBase);
     color: var(--base);
     position: relative;
+    border: 1px solid var(--primary);
+    box-shadow: 2px 2px 0 0 var(--primary);
 
     & label {
       padding: 7px 10px;
       padding-right: 30px;
-      color: var(--base);
+      color: var(--primary);
       font-weight: 600;
       height: 100%;
       display: flex;
@@ -175,7 +213,7 @@
 
       &:hover,
       &:focus {
-        background-color: #FFEDC5;
+        background-color: var(--inputAction);
       }
 
       & > i {
@@ -191,7 +229,7 @@
       top: 50%;
       -webkit-transform: translateY(-51%);
       transform: translateY(-51%);
-      color: var(--base);
+      color: var(--primary);
       pointer-events: none;
       font-weight: 600;
       font-size: 28px;
@@ -201,12 +239,12 @@
 
   & .newItemWrapper {
     & > label {
-      color: var(--main);
+      color: var(--primary);
       padding: 0;
 
       &:hover,
       &:focus {
-        color: var(--secondary);
+        color: var(--accent);
       }
     }
   }
@@ -214,7 +252,6 @@
   & .Textarea.description textarea {
     min-width: 100%;
     resize: vertical;
-    border: 1px solid var(--border);
     padding: 5px 10px;
   }
 
@@ -224,16 +261,19 @@
   }
 
   & .SkohubLookup {
+    position: relative;
 
     & .skohubLookupSelectedValue {
-      background-color: var(--mainLight);
+      background-color: var(--inputBase);
       padding: 5px 10px;
-      color: var(--base);
+      color: var(--primary);
       font-weight: bold;
       position: relative;
+      box-shadow: 2px 2px 0 0 var(--primary);
+      border: 1px solid var(--primary);
 
       &:hover {
-        background-color: #FFEDC5;
+        background-color: var(--inputAction);
       }
 
       &:after {
@@ -244,7 +284,7 @@
         top: 50%;
         -webkit-transform: translateY(-51%);
         transform: translateY(-51%);
-        color: var(--base);
+        color: var(--primary);
         pointer-events: none;
         font-weight: 600;
         font-size: 28px;
@@ -252,7 +292,20 @@
     }
 
     & .skohubLookupContent > ul {
-      border: 1px solid var(--border);
+      border: 1px solid var(--primary);
+      position: absolute;
+      width: 100%;
+      background-color: var(--inputBase);
+      top: calc(100% + 5px);
+      z-index: 5;
+
+      & > li {
+        margin-bottom: 0;
+      }
+
+      & span:last-child {
+        border-bottom: 1px solid var(--primary);
+      }
 
       /* Nested levels vased on the inital padding
       of 10 and incrementing by 5 on each level */
@@ -274,9 +327,13 @@
       & span {
         display: flex;
         padding: 10px;
-        border-bottom: 1px solid var(--border);
+        border-bottom: 1px solid var(--primary);
+        cursor: pointer;
+
+        &:hover {
+          background-color: var(--inputAction);
+        }
       }
     }
   }
-
 }

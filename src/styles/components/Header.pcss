@@ -1,27 +1,44 @@
 .Header {
-  background-color: #F9F9F9;
-  border-bottom: 2px solid var(--border);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
+  background: #11998e;
+  background: linear-gradient(to right, #27CA84, #11998e);
 
   & h1 {
     margin: 0;
+    margin-right: 20px;
+
+    & a {
+      color: white;
+    }
+  }
+
+  & .wave {
+    overflow: hidden;
+    position: relative;
+    height: 50px;
+  }
+
+  & .headerContent {
+    padding: 20px 20px 5px 20px;
+    display: flex;
+  }
+
+  & svg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 49px;
+    fill: var(--base);
   }
 
   & form {
     display: flex;
-    margin: 0 20px;
     flex: 1;
-
-    & input {
-      margin-bottom: 0;
-    }
 
     & #schemaURL {
       flex: 1;
+      margin-right: 10px;
+      padding: 0 10px;
     }
-
   }
 }

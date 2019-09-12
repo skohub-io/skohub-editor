@@ -6,7 +6,7 @@ import '../styles/components/Preview.pcss'
 
 const Preview = ({id, json, clear}) => {
   return (
-    <section className="Preview">
+    <section className="Preview block">
       <div
         className="options"
       >

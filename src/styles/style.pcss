@@ -1,28 +1,72 @@
 :root {
-  --text: #F9F9F9;
-  --base: #2c8898;
+  --text: hsl(0, 0%, 24%);
+  --base: rgb(242, 245, 247);
+  --blockBase: hsl(0, 100%, 100%);
+  --primary: hsl(0, 0%, 24%);
+  --inputBase: hsl(204, 24%, 96%);
+  --inputAction: hsl(192, 8.2%, 88%);
+  --accent: hsl(161.6, 71.8%, 41.8%);
+  --error: tomato;
+
   --secondary: #FF2266;
-  --text: #4a4a4a;
   --border: lightgrey;
   --colorBorder: #393;
-  --main: #2c8898;
-  --mainLight: #F1F1F1;
 }
 
-html {
+ html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
-  word-wrap: break-word;
+}
+
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 body {
+  padding: 0;
+  margin: 0;
+  word-wrap: break-word;
   font-size: 16px;
-  font-family: futura-pt,sans-serif,sans-serif;
+  font-family: futura-pt, sans-serif, sans-serif;
   color: var(--text);
-  word-break: break-word;
+  background-color: var(--base);
 }
 
 *, *:before, *:after {
   box-sizing: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary);
+
+  &:hover {
+    color: var(--accent);
+  }
+}
+
+.inputStyle {
+  background-color: var(--base);
+  box-shadow: 2px 2px 0 0 var(--primary);
+  border: none;
+  cursor: pointer;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+
+  &:hover,
+  &:focus {
+    background-color: var(--inputAction);
+  }
+}
+
+.block {
+  background-color: var(--blockBase);
+  box-shadow: 0 2px 4px 0 hsla(198, 45%, 10%, .12);
+  padding: 20px;
+  border-radius: 8px;
 }
 
 .wrapper {
@@ -35,6 +79,11 @@ body {
   display: flex;
   overflow-x: auto;
   flex: 1;
+  padding: 5px 20px 10px 20px;
+
+  & .btn {
+    padding: 10px;
+  }
 }
 
 .hidden {
@@ -42,13 +91,23 @@ body {
 }
 
 .btn,
+button,
+textarea,
 input[type=button],
+input[type=text],
 input[type=submit],
 input[type=url] {
-  background-color: var(--mainLight);
-  border: solid 1px #393;
-  box-shadow: 4px 3px 0 0 #0fc;
-  padding: 10px;
+  background-color: var(--base);
+  box-shadow: 2px 2px 0 0 var(--primary);
+  border: none;
+  cursor: pointer;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+
+  &:hover,
+  &:focus {
+    background-color: var(--inputAction);
+  }
 }
 
 a {
