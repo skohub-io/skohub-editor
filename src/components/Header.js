@@ -2,7 +2,7 @@ import React from 'react'
 
 import '../styles/components/Header.pcss'
 
-const Header = ({setSchema}) => {
+const Header = ({setSchema, schemaURL, setSchemaURL}) => {
   return (
     <header className="Header">
       <div className="headerContent">
@@ -25,6 +25,8 @@ const Header = ({setSchema}) => {
             name="schemaURL"
             placeholder="Schema URL"
             className="inputStyle"
+            value={schemaURL}
+            onChange={(e) => setSchemaURL(e.target.value)}
           />
 
           <datalist id="schemas">
