@@ -18,7 +18,11 @@ class SkohubEditor extends React.Component {
     const url = new URL(window.location.href)
 
     this.state = {
-      json: {},
+      json: {
+        'id': decodeURIComponent(url.searchParams.get('id')),
+        'name': decodeURIComponent(url.searchParams.get('name')),
+        'description': decodeURIComponent(url.searchParams.get('description'))
+      },
       schema: null,
       schemaURL: url.searchParams.get('schema')
     }
