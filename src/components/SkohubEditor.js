@@ -11,16 +11,24 @@ import Preview from './Preview'
 import '../styles/components/FormsStructure.pcss'
 import '../styles/formStyle.pcss'
 
+const DEFAULT_SCHEMA = 'https://raw.githubusercontent.com/literarymachine/oer-metadata-schemas/generic-OER/oer.json'
+
 class SkohubEditor extends React.Component {
 
   constructor(props) {
     super(props)
     const url = new URL(window.location.href)
 
+    var parameters = [...url.searchParams].filter(([key]) => key != "schema")
+    const json = parameters.reduce((obj, item) => {
+     obj[item[0]] = decodeURIComponent(item[1])
+     return obj
+    }, {})
+
     this.state = {
-      json: {},
+      json,
       schema: null,
-      schemaURL: url.searchParams.get('schema')
+      schemaURL: url.searchParams.get('schema') || DEFAULT_SCHEMA
     }
     this.setSchema = this.setSchema.bind(this)
     this.setSchemaURL = this.setSchemaURL.bind(this)
