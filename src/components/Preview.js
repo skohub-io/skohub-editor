@@ -13,12 +13,14 @@ const Preview = ({ json, clear }) => {
         className="options"
       >
         <input
+          className="btn"
           type="button"
           onClick={clear}
           value="Clear"
         />
 
         <input
+          className="btn"
           type="button"
           onClick={() => {
             var range = document.createRange()
