@@ -1,8 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import '../styles/components/Header.pcss'
 
-const Header = ({setSchema, schemaURL, setSchemaURL}) => {
+const Header = ({ setSchema, schemaURL, setSchemaURL }) => {
   return (
     <header className="Header">
       <div className="headerContent">
@@ -43,10 +44,10 @@ const Header = ({setSchema, schemaURL, setSchemaURL}) => {
       </div>
 
       <div className="wave">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 1000 279.24"
-        preserveAspectRatio="none">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1000 279.24"
+          preserveAspectRatio="none">
           <path
             d="M1000 0S331.54-4.18 0 279.24h1000z"
             opacity=".25"
@@ -55,10 +56,16 @@ const Header = ({setSchema, schemaURL, setSchemaURL}) => {
             d="M1000 279.24s-339.56-44.3-522.95-109.6S132.86 23.76 0 25.15v254.09z"
           />
         </svg>
-    </div>
+      </div>
 
     </header>
   )
+}
+
+Header.propTypes = {
+  schemaURL: PropTypes.string,
+  setSchema: PropTypes.func.isRequired,
+  setSchemaURL: PropTypes.func.isRequired
 }
 
 export default Header

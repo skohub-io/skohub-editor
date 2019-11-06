@@ -7,7 +7,7 @@ import { objectMap } from '../../common'
 
 const List = ({
   name, value, children, errors, property, title,
-  className, translate, maxItems, formId, required, description,
+  className, translate, maxItems, formId, required, description
 }) => (
   <div
     className={`List ${property || ''} ${className} ${errors.length ? 'hasError' : ''}`.trim()}
@@ -23,9 +23,8 @@ const List = ({
       {required ? <span className="asterisk" title={translate('This is a required field!')}>*</span> : ''}
     </div>
     <span className="fieldDescription">
-      {(description
-      && translate(description)
-      !== description)
+      {(description &&
+      translate(description) !== description)
         ? translate(description)
         : ''}
     </span>
@@ -76,7 +75,7 @@ List.propTypes = {
   maxItems: PropTypes.number,
   formId: PropTypes.string.isRequired,
   required: PropTypes.bool,
-  description: PropTypes.string,
+  description: PropTypes.string
 }
 
 List.defaultProps = {
@@ -87,7 +86,7 @@ List.defaultProps = {
   className: '',
   maxItems: undefined,
   required: false,
-  description: undefined,
+  description: undefined
 }
 
 export default withFormData(List)

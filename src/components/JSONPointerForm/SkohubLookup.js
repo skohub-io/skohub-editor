@@ -79,7 +79,7 @@ const SkohubLookup = (props) => {
       method: 'post',
       mode: 'cors',
       headers: {
-        'Accept': 'application/json',
+        Accept: 'application/json',
         'Content-Type': 'application/ld+json'
       },
       body: JSON.stringify(data)
@@ -90,21 +90,21 @@ const SkohubLookup = (props) => {
   useEffect(() => {
     fetch(inScheme, {
       headers: {
-        "Accept": "application/json"
+        Accept: 'application/json'
       }
     }).then(response => response.json())
       .then(setScheme)
 
     fetch(inScheme, {
       headers: {
-        "Accept": "text/index"
+        Accept: 'text/index'
       }
     }).then(response => response.json())
       .then(serialized => {
         const idx = FlexSearch.create()
         idx.import(serialized)
         setIndex(idx)
-        console.log("index loaded", idx.info())
+        console.log('index loaded', idx.info())
       })
   }, [])
 
@@ -121,43 +121,67 @@ const SkohubLookup = (props) => {
         {title}
       </div>
       {scheme && (
-          value ? (
-            <div className="skohubLookupSelectedValue" onClick={() => setValue(undefined)}>
-              {translate(value.prefLabel)}
-            </div>
-          ) : (
-            <div className="skohubLookupContent">
-              <input
-                value={query || ''}
-                type="text"
-                onChange={e => {
-                  setQuery(e.target.value || null)
-                  setExpanded(true)
-                }}
-                onFocus={() => setExpanded(true)}
-                onBlur={() => setTimeout(() => {
-                    setExpanded(false)
-                    setQuery(null)
-                  }, 250
-                )}
-                placeholder={title}
-              />
-              {expanded &&
+        value ? (
+          <div className="skohubLookupSelectedValue" onClick={() => setValue(undefined)}>
+            {translate(value.prefLabel)}
+          </div>
+        ) : (
+          <div className="skohubLookupContent">
+            <input
+              value={query || ''}
+              type="text"
+              onChange={e => {
+                setQuery(e.target.value || null)
+                setExpanded(true)
+              }}
+              onFocus={() => setExpanded(true)}
+              onBlur={() => setTimeout(() => {
+                setExpanded(false)
+                setQuery(null)
+              }, 250
+              )}
+              placeholder={title}
+            />
+            {expanded &&
                 <NestedList
-                    items={scheme.hasTopConcept}
-                    filter={query ? index.search(query) : null}
-                    highlight={RegExp(query, 'gi')}
-                    setValue={setValue}
-                    setQuery={setQuery}
-                    setExpanded={setExpanded}
-                    translate={translate}
-                  />
-              }
-            </div>
-          )
+                  items={scheme.hasTopConcept}
+                  filter={query ? index.search(query) : null}
+                  highlight={RegExp(query, 'gi')}
+                  setValue={setValue}
+                  setQuery={setQuery}
+                  setExpanded={setExpanded}
+                  translate={translate}
+                />
+            }
+          </div>
+        )
       )}
     </div>
   )
+}
+
+NestedList.propTypes = {
+  translate: PropTypes.func.isRequired,
+  setQuery: PropTypes.func,
+  setValue: PropTypes.func,
+  setExpanded: PropTypes.func,
+  items: PropTypes.arrayOf(PropTypes.any),
+  filter: PropTypes.arrayOf(PropTypes.any),
+  highlight: PropTypes.objectOf(PropTypes.instanceOf(RegExp))
+}
+
+SkohubLookup.propTypes = {
+  translate: PropTypes.func.isRequired,
+  errors: PropTypes.arrayOf(PropTypes.any),
+  schema: PropTypes.objectOf(PropTypes.any).isRequired,
+  value: PropTypes.objectOf(PropTypes.any),
+  title: PropTypes.string,
+  name: PropTypes.string,
+  property: PropTypes.string,
+  formId: PropTypes.string,
+  setValue: PropTypes.func,
+  registerSubmitCallback: PropTypes.func,
+  required: PropTypes.bool
 }
 
 export default withFormData(SkohubLookup)

@@ -8,7 +8,7 @@ const ListItem = ({ children }) => (
 )
 
 ListItem.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.element.isRequired
 }
 
 export default withFormData(ListItem)

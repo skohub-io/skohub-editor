@@ -6,51 +6,51 @@ import withFormData from './withFormData'
 import { triggerClick, objectMap } from '../../common'
 
 class DropdownSelect extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       filter: '',
       dropdown: false,
       labels: props.options
         .reduce((acc, curr) => Object
-          .assign(acc, { [curr]: props.translate(curr).toLowerCase() }), {}),
+          .assign(acc, { [curr]: props.translate(curr).toLowerCase() }), {})
     }
     this.optionFilter = this.optionFilter.bind(this)
     this.handleClick = this.handleClick.bind(this)
   }
 
-  componentDidMount() {
+  componentDidMount () {
     document.addEventListener('click', this.handleClick)
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     document.removeEventListener('click', this.handleClick)
   }
 
-  handleClick(e) {
+  handleClick (e) {
     if (!this.wrapper.contains(e.target)) {
       this.setState({ dropdown: false })
     }
   }
 
-  optionFilter() {
+  optionFilter () {
     const { filter, labels } = this.state
-    return option => !filter
-      || option.toLowerCase().search(filter.trim().toLowerCase()) !== -1
-      || labels[option].search(filter.trim().toLowerCase()) !== -1
+    return option => !filter ||
+      option.toLowerCase().search(filter.trim().toLowerCase()) !== -1 ||
+      labels[option].search(filter.trim().toLowerCase()) !== -1
   }
 
-  render() {
+  render () {
     const {
       name, property, value, options, setValue, errors, title, translate, className, formId,
-      required, description,
+      required, description
     } = this.props
 
     const { dropdown, filter } = this.state
 
     return (
       <div
-        ref={el => this.wrapper = el}
+        ref={el => { this.wrapper = el }}
         className={`DropdownSelect ${property || ''} ${className}${errors.length ? ' hasErrors' : ''}`.trim()}
         aria-labelledby={`${formId}-${name}-label`}
       >
@@ -62,9 +62,8 @@ class DropdownSelect extends React.Component {
           </div>
         }
         <span className="fieldDescription">
-          {(description
-          && translate(description)
-          !== description)
+          {(description &&
+          translate(description) !== description)
             ? translate(description)
             : ''}
         </span>
@@ -168,7 +167,7 @@ DropdownSelect.propTypes = {
   className: PropTypes.string,
   formId: PropTypes.string.isRequired,
   required: PropTypes.bool,
-  description: PropTypes.string,
+  description: PropTypes.string
 }
 
 DropdownSelect.defaultProps = {
@@ -178,7 +177,7 @@ DropdownSelect.defaultProps = {
   title: '',
   className: '',
   required: false,
-  description: undefined,
+  description: undefined
 }
 
 export default withFormData(DropdownSelect)

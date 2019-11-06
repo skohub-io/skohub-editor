@@ -8,6 +8,6 @@ module.exports = {
         'custom-media-queries': true,
         'color-mod-function': true
       }
-    },
-  },
+    }
+  }
 }

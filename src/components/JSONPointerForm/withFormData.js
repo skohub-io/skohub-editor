@@ -4,7 +4,7 @@ import jsonPointer from 'json-pointer'
 
 const withFormData = (BaseComponent) => {
   const formComponent = class FormComponent extends React.Component {
-    constructor(props, context) {
+    constructor (props, context) {
       super(props)
       const parents = context.path || []
       this.path = props.property != null
@@ -13,18 +13,18 @@ const withFormData = (BaseComponent) => {
       this.name = jsonPointer.compile(this.path)
     }
 
-    getChildContext() {
+    getChildContext () {
       return {
-        path: this.path,
+        path: this.path
       }
     }
 
-    shouldComponentUpdate() {
+    shouldComponentUpdate () {
       const { shouldFormComponentUpdate } = this.context
       return shouldFormComponentUpdate(this.name)
     }
 
-    render() {
+    render () {
       const {
         getValue, formId, setValue, getValidationErrors, shouldFormComponentFocus,
         registerSubmitCallback
@@ -46,15 +46,15 @@ const withFormData = (BaseComponent) => {
   }
 
   formComponent.propTypes = {
-    property: PropTypes.string,
+    property: PropTypes.string
   }
 
   formComponent.defaultProps = {
-    property: undefined,
+    property: undefined
   }
 
   formComponent.childContextTypes = {
-    path: PropTypes.arrayOf(PropTypes.any),
+    path: PropTypes.arrayOf(PropTypes.any)
   }
 
   formComponent.contextTypes = {
@@ -65,7 +65,7 @@ const withFormData = (BaseComponent) => {
     shouldFormComponentUpdate: PropTypes.func,
     shouldFormComponentFocus: PropTypes.func,
     formId: PropTypes.string,
-    registerSubmitCallback: PropTypes.func,
+    registerSubmitCallback: PropTypes.func
   }
 
   return formComponent

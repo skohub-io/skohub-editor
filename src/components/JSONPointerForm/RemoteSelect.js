@@ -10,11 +10,11 @@ import withI18n from '../withI18n'
 import { getURL, triggerClick, objectMap } from '../../common'
 
 class RemoteSelect extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       filter: '',
-      options: [],
+      options: []
     }
     this.handleChange = this.handleChange.bind(this)
     this.updateOptions = debounce(this.updateOptions.bind(this), 200)
@@ -23,21 +23,21 @@ class RemoteSelect extends React.Component {
     this.handleClick = this.handleClick.bind(this)
   }
 
-  componentDidMount() {
+  componentDidMount () {
     document.addEventListener('click', this.handleClick)
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     document.removeEventListener('click', this.handleClick)
   }
 
-  handleClick(e) {
+  handleClick (e) {
     if (!this.wrapper.contains(e.target)) {
       this.setState({ options: [] })
     }
   }
 
-  handleChange(e) {
+  handleChange (e) {
     const { schema } = this.props
 
     this.setState({ filter: e.target.value })
@@ -46,7 +46,7 @@ class RemoteSelect extends React.Component {
       : this.setState({ options: [] })
   }
 
-  updateOptions() {
+  updateOptions () {
     const { schema, api } = this.props
     const { filter } = this.state
 
@@ -57,29 +57,29 @@ class RemoteSelect extends React.Component {
     } else {
       const params = {
         q: `${filter}*`,
-        'filter.about.@type': schema.properties['@type'].enum,
+        'filter.about.@type': schema.properties['@type'].enum
       }
       const url = getURL({
         path: '/resource/',
-        params,
+        params
       })
       apiCall = api.get(url)
     }
     apiCall.then(result => this.setState({ options: result.member.map(member => member.about) }))
   }
 
-  showOption(option) {
+  showOption (option) {
     const { schema, translate } = this.props
     const { filter } = this.state
 
-    return !schema.properties.inScheme
-      || option['@type'] !== 'Concept'
-      || translate(option.name).toLowerCase().search(filter.trim().toLowerCase()) !== -1
+    return !schema.properties.inScheme ||
+      option['@type'] !== 'Concept' ||
+      translate(option.name).toLowerCase().search(filter.trim().toLowerCase()) !== -1
   }
 
-  optionList(options) {
+  optionList (options) {
     const {
-      name, translate, setValue, formId,
+      name, translate, setValue, formId
     } = this.props
 
     return (
@@ -112,16 +112,16 @@ class RemoteSelect extends React.Component {
     )
   }
 
-  render() {
+  render () {
     const {
       name, property, value, setValue, errors, title,
-      translate, className, formId, required, schema, description,
+      translate, className, formId, required, schema, description
     } = this.props
     const { filter, options } = this.state
 
     return (
       <div
-        ref={el => this.wrapper = el}
+        ref={el => { this.wrapper = el }}
         className={`RemoteSelect ${property || ''} ${className} ${errors.length ? 'hasError' : ''}`.trim()}
         aria-labelledby={`${formId}-${name}-label`}
         onKeyDown={(e) => {
@@ -139,9 +139,8 @@ class RemoteSelect extends React.Component {
           {translate(title)}
         </div>
         <span className="fieldDescription">
-          {(description
-          && translate(description)
-          !== description)
+          {(description &&
+          translate(description) !== description)
             ? translate(description)
             : ''}
         </span>
@@ -209,7 +208,7 @@ RemoteSelect.propTypes = {
   className: PropTypes.string,
   formId: PropTypes.string.isRequired,
   required: PropTypes.bool,
-  description: PropTypes.string,
+  description: PropTypes.string
 }
 
 RemoteSelect.defaultProps = {
@@ -219,7 +218,7 @@ RemoteSelect.defaultProps = {
   title: '',
   className: '',
   required: false,
-  description: undefined,
+  description: undefined
 }
 
 export default withI18n(withApi(withFormData(RemoteSelect)))

@@ -1,11 +1,10 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import moment from 'moment'
 
 const translate = key => (
   (key && typeof key === 'string')
-  ? key
-  : (Object.entries(key).filter(([, value]) => !!value).shift() || []).pop() || key
+    ? key
+    : (Object.entries(key).filter(([, value]) => !!value).shift() || []).pop() || key
 )
 
 const withI18n = (BaseComponent) => {
