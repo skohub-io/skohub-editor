@@ -18,16 +18,17 @@ class SkohubEditor extends React.Component {
     super(props)
     const url = new URL(window.location.href)
 
-    var parameters = [...url.searchParams].filter(([key]) => key != "schema")
+    var parameters = [...url.searchParams].filter(([key]) => key !== 'schema')
     const json = parameters.reduce((obj, item) => {
-     obj[item[0]] = decodeURIComponent(item[1])
-     return obj
+      obj[item[0]] = decodeURIComponent(item[1])
+      return obj
     }, {})
 
     this.state = {
       json,
       schema: null,
-      schemaURL: url.searchParams.get('schema') || DEFAULT_SCHEMA
+      schemaURL: url.searchParams.get('schema') || DEFAULT_SCHEMA,
+      view: 'Editor'
     }
     this.setSchema = this.setSchema.bind(this)
     this.setSchemaURL = this.setSchemaURL.bind(this)
@@ -54,7 +55,7 @@ class SkohubEditor extends React.Component {
     const {
       setSchema,
       setSchemaURL,
-      state: { json, schema, schemaURL }
+      state: { json, schema, schemaURL, view }
     } = this
 
     return (
@@ -64,7 +65,19 @@ class SkohubEditor extends React.Component {
           schemaURL={schemaURL}
           setSchemaURL={setSchemaURL}
         />
-        <main className="content">
+
+        <div className="mobileViewSwitch">
+          <button
+            className="btn"
+            onClick={() => {
+              view === 'Editor'
+                ? this.setState({ view: 'Preview' })
+                : this.setState({ view: 'Editor' })
+            }}
+          >Show the {view === 'Editor' ? 'Preview' : 'Editor'}</button>
+        </div>
+
+        <main className={`content ${view}`}>
           {schema && (
             <>
               <Form

@@ -118,3 +118,79 @@ a {
 img {
   max-width: 100%;
 }
+
+
+.mobileViewSwitch {
+  display: none;
+  padding: 10px 20px;
+}
+
+@media (max-width: 576px) {
+  .mobileViewSwitch {
+    display: block;
+  }
+
+  .wrapper,
+  .content {
+    display: block;
+
+    &.Editor {
+      & .Preview,
+      & .noPreview {
+        display: none;
+      }
+    }
+
+    &.Preview {
+      & .Form {
+        display: none;
+      }
+    }
+
+    & .btn {
+      padding: 10px;
+    }
+  }
+
+  .Header {
+    & .wave {
+      height: 25px;
+
+      & svg {
+        height: 25px;
+      }
+    }
+
+    & .headerContent {
+      display: block;
+
+      & h1 {
+        text-align: center;
+      }
+
+      & form {
+        display: block;
+
+        & input {
+          width: 100%;
+          margin: 0;
+          margin-bottom: 5px;
+          padding: 5px 10px;
+
+          &#schemaURL {
+            padding: 5px 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .Form {
+    max-height: unset;
+    overflow: unset;
+    max-width: 100%;
+
+    & + div {
+    }
+  }
+}
