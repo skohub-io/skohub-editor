@@ -12,7 +12,7 @@ const ENV = process.env.NODE_ENV
 let Config = {
   context: path.join(__dirname, 'src'),
   entry: [
-    "./index.js"
+    './index.js'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -23,14 +23,14 @@ let Config = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: "babel-loader"
+        loader: 'babel-loader'
       },
 
       {
         test: /\.(css|pcss)$/,
         include: [
           path.resolve(__dirname, 'src'),
-          path.resolve(__dirname, 'node_modules/normalize.css'),
+          path.resolve(__dirname, 'node_modules/normalize.css')
         ]
       },
 
@@ -58,7 +58,7 @@ if (ENV === 'production') {
     mode: 'production',
     plugins: [
       new MiniCssExtractPlugin({
-        filename: "public/styles.css"
+        filename: 'public/styles.css'
       }),
       new OptimizeCSSAssetsPlugin({
         cssProcessor: cssnano,
@@ -77,12 +77,12 @@ if (ENV === 'production') {
             {
               loader: 'css-loader',
               options: {
-                importLoaders: 1,
-              },
+                importLoaders: 1
+              }
             },
-            "postcss-loader"
+            'postcss-loader'
           ]
-        },
+        }
       ]
     }
   })
@@ -95,7 +95,7 @@ if (ENV === 'development') {
     devServer: {
       hot: true,
       overlay: true,
-      host: "0.0.0.0"
+      host: '0.0.0.0'
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin()
@@ -110,7 +110,7 @@ if (ENV === 'development') {
               loader: 'css-loader',
               options: {
                 importLoaders: 1,
-                sourceMap: true,
+                sourceMap: true
               }
             },
             {

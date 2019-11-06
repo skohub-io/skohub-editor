@@ -8,24 +8,23 @@ import { objectMap } from '../../common'
 
 const DateTime = ({
   name, value, setValue, errors, title, className,
-  translate, formId, required, display, description,
+  translate, formId, required, display, description
 }) => (
   <div className={`DateTime ${className}${errors.length ? ' hasErrors' : ''}`}>
     <label
       htmlFor={`${formId}-${name}`}
       dangerouslySetInnerHTML={
         {
-          __html: translate(title)
-          + (required
+          __html: translate(title) +
+          (required
             ? `<span class="asterisk" title="${translate('This is a required field!')}">*</span>`
-            : ''),
+            : '')
         }}
       className={required ? 'required' : ''}
     />
     <span className="fieldDescription">
-      {(description
-      && translate(description)
-      !== description)
+      {(description &&
+      translate(description) !== description)
         ? translate(description)
         : ''}
     </span>
@@ -40,7 +39,7 @@ const DateTime = ({
         options={{
           date: true,
           datePattern: ['Y', 'm', 'd'],
-          delimiter: '-',
+          delimiter: '-'
         }}
         value={value}
         onChange={(e) => {
@@ -49,17 +48,17 @@ const DateTime = ({
         }}
       />
 
-      {value
-        && moment(value.split('T')[0], 'YYYY-MM-DD', true).isValid() && (
+      {value &&
+        moment(value.split('T')[0], 'YYYY-MM-DD', true).isValid() && (
         <Cleave
           placeholder={`hh:mm ${translate('(Optional)')}`} // USE SECOND PLACEHOLDER?
           options={{
             time: true,
-            timePattern: ['h', 'm'],
+            timePattern: ['h', 'm']
           }}
           value={
-            (value.includes('T')
-            && value.split('T')[1].split('.')[0]) || ''
+            (value.includes('T') &&
+            value.split('T')[1].split('.')[0]) || ''
           }
           onChange={(e) => {
             const time = e.target.value
@@ -83,7 +82,7 @@ DateTime.propTypes = {
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
-    PropTypes.bool,
+    PropTypes.bool
   ]),
   setValue: PropTypes.func.isRequired,
   errors: PropTypes.arrayOf(PropTypes.object),
@@ -93,7 +92,7 @@ DateTime.propTypes = {
   formId: PropTypes.string.isRequired,
   required: PropTypes.bool,
   display: PropTypes.object,
-  description: PropTypes.string,
+  description: PropTypes.string
 }
 
 DateTime.defaultProps = {
@@ -103,7 +102,7 @@ DateTime.defaultProps = {
   className: '',
   required: false,
   display: {},
-  description: undefined,
+  description: undefined
 }
 
 export default withFormData(DateTime)

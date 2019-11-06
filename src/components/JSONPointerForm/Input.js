@@ -7,37 +7,36 @@ import { appendOnFocus, objectMap } from '../../common'
 
 const castValue = (target) => {
   switch (target.type) {
-  case 'checkbox':
-    return target.checked ? true : null
-  case 'number':
-    return parseFloat(target.value)
-  case 'integer':
-    return parseInt(target.value, 10)
-  default:
-    return target.value
+    case 'checkbox':
+      return target.checked ? true : null
+    case 'number':
+      return parseFloat(target.value)
+    case 'integer':
+      return parseInt(target.value, 10)
+    default:
+      return target.value
   }
 }
 
 const Input = ({
   type, name, value, setValue, errors, property, title, className, translate,
-  shouldFormComponentFocus, formId, required, display, description,
+  shouldFormComponentFocus, formId, required, display, description
 }) => (
   <div className={`Input ${type} ${property || ''} ${className} ${errors.length ? 'hasError' : ''}`.trim()}>
     <label
       htmlFor={`${formId}-${name}`}
       dangerouslySetInnerHTML={
         {
-          __html: translate(title)
-              + (required
+          __html: translate(title) +
+              (required
                 ? `<span class="asterisk" title="${translate('This is a required field!')}">*</span>`
-                : ''),
+                : '')
         }}
       className={required ? 'required' : ''}
     />
     <span className="fieldDescription">
-      {(description
-      && translate(description)
-      !== description)
+      {(description &&
+      translate(description) !== description)
         ? translate(description)
         : ''}
     </span>
@@ -65,7 +64,7 @@ Input.propTypes = {
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
-    PropTypes.bool,
+    PropTypes.bool
   ]),
   setValue: PropTypes.func.isRequired,
   errors: PropTypes.arrayOf(PropTypes.object),
@@ -77,7 +76,7 @@ Input.propTypes = {
   formId: PropTypes.string.isRequired,
   required: PropTypes.bool,
   display: PropTypes.object,
-  description: PropTypes.string,
+  description: PropTypes.string
 }
 
 Input.defaultProps = {
@@ -90,7 +89,7 @@ Input.defaultProps = {
   shouldFormComponentFocus: false,
   required: false,
   display: {},
-  description: undefined,
+  description: undefined
 }
 
 export default withFormData(Input)

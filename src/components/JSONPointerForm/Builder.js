@@ -15,21 +15,21 @@ import DateTime from './DateTime'
 import withI18n from '../withI18n'
 
 class Builder extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
-      showOptionalFields: props.showOptionalFields,
+      showOptionalFields: props.showOptionalFields
     }
     this.getComponent = this.getComponent.bind(this)
   }
 
-  getComponent(schema) {
+  getComponent (schema) {
     schema.allOf && (schema = merge.all(schema.allOf.concat(schema))) && (delete schema.allOf)
     schema.anyOf && (schema = merge.all(schema.anyOf.concat(schema))) && (delete schema.anyOf)
     schema.oneOf && (schema = merge.all(schema.oneOf.concat(schema))) && (delete schema.oneOf)
 
     const {
-      translate, config, widgets, locales,
+      translate, config, widgets, locales
     } = this.props
     const widgetsObj = Object.assign(
       {
@@ -40,9 +40,9 @@ class Builder extends React.Component {
         RemoteSelect,
         Textarea,
         KeywordSelect,
-        DateTime,
+        DateTime
       },
-      widgets,
+      widgets
     )
     const className = schema._display ? schema._display.className : undefined
 
@@ -61,67 +61,67 @@ class Builder extends React.Component {
       config,
       className,
       translate,
-      locales,
+      locales
     }
 
     if (schema._widget && widgetsObj[schema._widget]) {
       const Widget = widgetsObj[schema._widget]
       return <Widget {...props} schema={schema} />
     } else if (schema._widget) {
-      console.warn("Widget not found", schema._widget)
+      console.warn('Widget not found', schema._widget)
     }
 
     switch (schema.type) {
-    case 'string':
-      return schema.enum
-        ? <DropdownSelect {...props} options={schema.enum} />
-        : schema._display && schema._display.rows > 1
-          ? <Textarea {...props} />
-          : <Input {...props} type={schema._display && schema._display.type || 'text'} />
-    case 'integer':
-    case 'number':
-      return <Input {...props} type="number" />
-    case 'boolean':
-      return <Input {...props} type="checkbox" />
-    case 'array':
-      return <List {...props} maxItems={schema.maxItems}>{this.getComponent(schema.items)}</List>
-    case 'object':
-      return (
-        <Fieldset {...props}>
-          <div className="requiredFields">
-            {schema.required && Object.keys(schema.properties)
-              .filter(property => schema.required.includes(property))
-              .map(property => React.cloneElement(
-                this.getComponent(schema.properties[property]), {
-                  property,
-                  key: property,
-                  required: true,
-                },
-              ))
-            }
-          </div>
-          <div className="optionalFields">
-            {Object.keys(schema.properties)
-              .filter(property => !schema.required || !schema.required.includes(property))
-              .map(property => React.cloneElement(
-                this.getComponent(schema.properties[property]), {
-                  property,
-                  key: property,
-                  required: false,
-                },
-              ))
-            }
-          </div>
-        </Fieldset>
-      )
-    case 'null':
-    default:
-      console.warn('Could not determine form component for', schema)
-      return <Input {...props} type="text" />
+      case 'string':
+        return schema.enum
+          ? <DropdownSelect {...props} options={schema.enum} />
+          : schema._display && schema._display.rows > 1
+            ? <Textarea {...props} />
+            : <Input {...props} type={(schema._display && schema._display.type) || 'text'} />
+      case 'integer':
+      case 'number':
+        return <Input {...props} type="number" />
+      case 'boolean':
+        return <Input {...props} type="checkbox" />
+      case 'array':
+        return <List {...props} maxItems={schema.maxItems}>{this.getComponent(schema.items)}</List>
+      case 'object':
+        return (
+          <Fieldset {...props}>
+            <div className="requiredFields">
+              {schema.required && Object.keys(schema.properties)
+                .filter(property => schema.required.includes(property))
+                .map(property => React.cloneElement(
+                  this.getComponent(schema.properties[property]), {
+                    property,
+                    key: property,
+                    required: true
+                  }
+                ))
+              }
+            </div>
+            <div className="optionalFields">
+              {Object.keys(schema.properties)
+                .filter(property => !schema.required || !schema.required.includes(property))
+                .map(property => React.cloneElement(
+                  this.getComponent(schema.properties[property]), {
+                    property,
+                    key: property,
+                    required: false
+                  }
+                ))
+              }
+            </div>
+          </Fieldset>
+        )
+      case 'null':
+      default:
+        console.warn('Could not determine form component for', schema)
+        return <Input {...props} type="text" />
     }
   }
 
-  render() {
+  render () {
     const { schema, translate } = this.props
     const { showOptionalFields } = this.state
     const optionalFieldsClass = showOptionalFields
@@ -152,13 +152,13 @@ Builder.propTypes = {
   widgets: PropTypes.objectOf(PropTypes.any),
   config: PropTypes.objectOf(PropTypes.any),
   showOptionalFields: PropTypes.bool,
-  locales: PropTypes.arrayOf(PropTypes.any).isRequired,
+  locales: PropTypes.arrayOf(PropTypes.any).isRequired
 }
 
 Builder.defaultProps = {
   widgets: {},
   config: null,
-  showOptionalFields: true,
+  showOptionalFields: true
 }
 
 export default withI18n(Builder)

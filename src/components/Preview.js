@@ -1,10 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Highlight from 'react-highlight'
+
 import 'highlight.js/styles/github-gist.css'
 
 import '../styles/components/Preview.pcss'
 
-const Preview = ({id, json, clear}) => {
+const Preview = ({ json, clear }) => {
   return (
     <section className="Preview block">
       <div
@@ -33,6 +35,11 @@ const Preview = ({id, json, clear}) => {
       </Highlight>
     </section>
   )
+}
+
+Preview.propTypes = {
+  json: PropTypes.objectOf(PropTypes.any).isRequired,
+  clear: PropTypes.func.isRequired
 }
 
 export default Preview

@@ -19,9 +19,8 @@ const Textarea = ({
       {required ? <span className="asterisk" title={translate('This is a required field!')}>*</span> : ''}
     </label>
     <span className="fieldDescription">
-      {(description
-      && translate(description)
-      !== description)
+      {(description &&
+      translate(description) !== description)
         ? translate(description)
         : ''}
     </span>
@@ -56,6 +55,9 @@ Textarea.propTypes = {
   formId: PropTypes.string.isRequired,
   required: PropTypes.bool,
   description: PropTypes.string,
+  display: PropTypes.shape({
+    rows: PropTypes.number
+  })
 }
 
 Textarea.defaultProps = {
@@ -66,7 +68,7 @@ Textarea.defaultProps = {
   className: '',
   shouldFormComponentFocus: false,
   required: false,
-  description: undefined,
+  description: undefined
 }
 
 export default withFormData(Textarea)

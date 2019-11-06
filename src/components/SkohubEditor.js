@@ -14,8 +14,7 @@ import '../styles/formStyle.pcss'
 const DEFAULT_SCHEMA = 'https://raw.githubusercontent.com/literarymachine/oer-metadata-schemas/generic-OER/oer.json'
 
 class SkohubEditor extends React.Component {
-
-  constructor(props) {
+  constructor (props) {
     super(props)
     const url = new URL(window.location.href)
 
@@ -34,24 +33,24 @@ class SkohubEditor extends React.Component {
     this.setSchemaURL = this.setSchemaURL.bind(this)
   }
 
-  componentDidMount() {
+  componentDidMount () {
     const { setSchema, state: { schemaURL } } = this
     schemaURL && setSchema(schemaURL)
   }
 
-  setSchema(schemaURL) {
+  setSchema (schemaURL) {
     fetch(schemaURL).then(response => {
       response.json().then(schema => {
-        this.setState({schema})
+        this.setState({ schema })
       })
     }).catch(err => console.log(err))
   }
 
-  setSchemaURL(url) {
-    this.setState({schemaURL: url})
+  setSchemaURL (url) {
+    this.setState({ schemaURL: url })
   }
 
-  render() {
+  render () {
     const {
       setSchema,
       setSchemaURL,
@@ -66,22 +65,22 @@ class SkohubEditor extends React.Component {
           setSchemaURL={setSchemaURL}
         />
         <main className="content">
-            {schema && (
-              <>
+          {schema && (
+            <>
               <Form
                 data={json}
                 onChange={data => {
-                  this.setState({json: data})
+                  this.setState({ json: data })
                 }}
-                validate={validate(JsonSchema(schema).get(`/`))}
+                validate={validate(JsonSchema(schema).get('/'))}
                 onSubmit={(data) => {
                   console.log(data)
-                  this.setState({json: data})
+                  this.setState({ json: data })
                 }}
               >
                 <Builder
-                  schema={JsonSchema(schema).get(`/`)}
-                  widgets={{SkohubLookup}}
+                  schema={JsonSchema(schema).get('/')}
+                  widgets={{ SkohubLookup }}
                 />
                 <div className="buttons">
                   <button className="btn" type="submit">Save</button>
@@ -92,9 +91,9 @@ class SkohubEditor extends React.Component {
                 <Preview
                   json={json}
 
-                  validate={validate(JsonSchema(schema).get(`/`))}
+                  validate={validate(JsonSchema(schema).get('/'))}
                   clear={() => {
-                    if (confirm("Any unsaved progress will be lost")) {
+                    if (confirm('Any unsaved progress will be lost')) {
                       this.setState({
                         json: {}
                       })
@@ -106,8 +105,8 @@ class SkohubEditor extends React.Component {
                   <span>👈</span>&nbsp;Use the form
                 </div>
               )}
-              </>
-            )}
+            </>
+          )}
         </main>
       </div>
     )

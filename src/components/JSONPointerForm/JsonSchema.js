@@ -6,7 +6,7 @@ const JsonSchema = (schema) => {
   const cloneSchema = schema => JSON.parse(JSON.stringify(schema))
 
   const get = ptr => expandSchema(
-    cloneSchema(jsonPointer.get(schema, ptr.slice(1))),
+    cloneSchema(jsonPointer.get(schema, ptr.slice(1)))
   )
 
   const expandSchema = (schema) => {
@@ -22,7 +22,7 @@ const JsonSchema = (schema) => {
     if ('properties' in schema) {
       Object.keys(schema.properties).forEach((property) => {
         schema.properties[property] = expandSchema(
-          schema.properties[property],
+          schema.properties[property]
         )
       })
     }
@@ -38,7 +38,7 @@ const JsonSchema = (schema) => {
   }
 
   return {
-    get,
+    get
   }
 }
 
