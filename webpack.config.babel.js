@@ -95,7 +95,8 @@ if (ENV === 'development') {
     devServer: {
       hot: true,
       overlay: true,
-      host: '0.0.0.0'
+      host: '0.0.0.0',
+      port: process.env.PORT || 9090
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin()
