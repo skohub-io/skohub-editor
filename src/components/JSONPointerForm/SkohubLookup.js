@@ -75,16 +75,19 @@ const SkohubLookup = (props) => {
   const inScheme = SchemeMap(schema.properties.inScheme.properties.id.enum[0].replace(/^https?:/, ''))
 
   value && registerSubmitCallback(data => {
-    fetch(`https://test.skohub.io/inbox?target=${encodeURIComponent(value.id)}`, {
-      method: 'post',
-      mode: 'cors',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/ld+json'
-      },
-      body: JSON.stringify(data)
-    }).then(response => response.json())
-      .then(console.log)
+    fetch(value.id).then(response => {
+      const actor = new URL(response.url).pathname.substring(1)
+      console.log(actor)
+      fetch(`https://test.skohub.io/inbox?actor=${actor}`, {
+        method: 'post',
+        mode: 'cors',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/ld+json'
+        },
+        body: JSON.stringify(data)
+      }).then(console.log)
+    })
   })
 
   useEffect(() => {
