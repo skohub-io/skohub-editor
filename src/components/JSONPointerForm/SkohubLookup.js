@@ -72,7 +72,7 @@ const SkohubLookup = (props) => {
   const inScheme = SchemeMap(schema.properties.inScheme.properties.id.enum[0].replace(/^https?:/, ''))
 
   value && registerSubmitCallback(data => {
-    fetch(value.id).then(response => {
+    fetch(value.id.replace(/^http:/, '')).then(response => {
       const actor = new URL(response.url).pathname.substring(1)
       console.log(actor)
       fetch(`https://test.skohub.io/inbox?actor=${actor}`, {
