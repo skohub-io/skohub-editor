@@ -30,10 +30,7 @@ const NestedList = ({ items, filter, highlight, setValue, setQuery, setExpanded,
               __html: translate(item.prefLabel).replace(highlight, str => `<strong>${str}</strong>`)
             }}
             onClick={() => {
-              setValue({
-                id: item.id,
-                prefLabel: item.prefLabel
-              })
+              setValue(item)
               setQuery(null)
               setExpanded(false)
             }}
@@ -150,7 +147,14 @@ const SkohubLookup = (props) => {
                   items={scheme.hasTopConcept}
                   filter={query ? index.search(query) : null}
                   highlight={RegExp(query, 'gi')}
-                  setValue={setValue}
+                  setValue={item => setValue({
+                    id: item.id,
+                    prefLabel: item.prefLabel,
+                    type: 'Concept',
+                    inScheme: {
+                      id: schema.properties.inScheme.properties.id.enum[0]
+                    }
+                  })}
                   setQuery={setQuery}
                   setExpanded={setExpanded}
                   translate={translate}
