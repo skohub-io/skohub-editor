@@ -74,7 +74,7 @@ const SkohubLookup = (props) => {
   value && registerSubmitCallback(data => {
     fetch(value.id.replace(/^http:/, '')).then(response => {
       const actor = new URL(response.url).pathname.substring(1)
-      console.log(actor)
+      const label = translate(value.prefLabel)
       fetch(`https://test.skohub.io/inbox?actor=${actor}`, {
         method: 'post',
         mode: 'cors',
@@ -83,7 +83,9 @@ const SkohubLookup = (props) => {
           'Content-Type': 'application/ld+json'
         },
         body: JSON.stringify(data)
-      }).then(console.log)
+      })
+      .then(res => alert(res.ok ? `Published to ${label}` : `Could not publish to ${label}`))
+      .catch(e => alert(`An error has occured: ${e.message}`))
     })
   })
 
