@@ -14,7 +14,7 @@ npm install
 ```
 npm start
 ```
-A development server will be running on [localhost:8080](http://localhost:8080)
+A development server will be running on [localhost:9090](http://localhost:9090)
 
 ### Build for production
 ```
