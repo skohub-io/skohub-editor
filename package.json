@@ -56,6 +56,6 @@
   },
   "dependencies": {
     "flexsearch": "^0.6.30",
-    "http-server": "^0.11.1"
+    "http-server": "^0.12.1"
   }
 }
