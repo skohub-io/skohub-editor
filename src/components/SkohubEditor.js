@@ -27,7 +27,9 @@ class SkohubEditor extends React.Component {
     this.state = {
       json,
       schema: null,
-      schemaURL: url.searchParams.get('schema') || DEFAULT_SCHEMA,
+      schemaURL: url.searchParams.get('schema') ||
+        localStorage.getItem('schemaURL') ||
+        DEFAULT_SCHEMA,
       view: 'Editor'
     }
     this.setSchema = this.setSchema.bind(this)
