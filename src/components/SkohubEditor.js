@@ -24,10 +24,19 @@ class SkohubEditor extends React.Component {
       return obj
     }, {})
 
+    let savedSchemaURL
+    try {
+      // Empty try/catch to avoid the extension crash on Firefox
+      // https://bugzilla.mozilla.org/show_bug.cgi?id=1323228
+      savedSchemaURL = localStorage.getItem('schemaURL')
+    } catch (error) {}
+
     this.state = {
       json,
       schema: null,
-      schemaURL: url.searchParams.get('schema') || DEFAULT_SCHEMA,
+      schemaURL: url.searchParams.get('schema') ||
+        savedSchemaURL ||
+        DEFAULT_SCHEMA,
       view: 'Editor'
     }
     this.setSchema = this.setSchema.bind(this)

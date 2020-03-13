@@ -14,8 +14,7 @@ const Header = ({ setSchema, schemaURL, setSchemaURL }) => {
         <form
           onSubmit={(e) => {
             e.preventDefault()
-            const formData = new FormData(e.target)
-            const schemaURL = formData.get('schemaURL')
+            localStorage.setItem('schemaURL', schemaURL)
             setSchema(schemaURL)
           }}
         >
