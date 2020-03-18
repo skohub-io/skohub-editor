@@ -51,7 +51,8 @@ class SkohubEditor extends React.Component {
   setSchema (schemaURL) {
     fetch(schemaURL).then(response => {
       response.json().then(schema => {
-        this.setState({ schema })
+        const json = Object.assign({}, schema.default, this.state.json)
+        this.setState({ schema, json })
       })
     }).catch(err => console.log(err))
   }
@@ -112,7 +113,6 @@ class SkohubEditor extends React.Component {
               {Object.values(json).length ? (
                 <Preview
                   json={json}
-
                   validate={validate(JsonSchema(schema).get('/'))}
                   clear={() => {
                     if (confirm('Any unsaved progress will be lost')) {

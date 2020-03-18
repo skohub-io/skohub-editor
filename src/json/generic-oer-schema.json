@@ -3,6 +3,9 @@
     "title":"OER",
     "description":"An Open Educational Resource",
     "type":"object",
+    "default": {
+      "@context": "http://schema.org/"
+    },
     "properties":{
         "@context":{
             "type":"string",
