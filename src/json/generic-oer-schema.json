@@ -206,7 +206,7 @@
             "_widget": {
                 "type": "SkohubLookup",
                 "options": {
-                  "url": "https://test.skohub.io/acka47/lrmi-resource-types/heads/master/purl.org/dcx/lrmi-vocabs/learningResourceType/"
+                  "url": "https://skohub.io/acka47/lrmi-resource-types/heads/master/purl.org/dcx/lrmi-vocabs/learningResourceType/"
                 }
               },
             "properties":{
@@ -239,7 +239,7 @@
             "_widget": {
                 "type": "SkohubLookup",
                 "options": {
-                  "url": "https://skohub.io/acka47/lrmi/heads/master/purl.org/dcx/lrmi-vocabs/educationalAudienceRole/"
+                  "url": "https://skohub.io/acka47/lrmi-audience-role/heads/master/purl.org/dcx/lrmi-vocabs/educationalAudienceRole/"
                 }
               },
             "properties":{
