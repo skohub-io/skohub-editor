@@ -206,7 +206,7 @@
             "_widget": {
                 "type": "SkohubLookup",
                 "options": {
-                  "url": "https://test.skohub.io/acka47/lrmi/heads/master/purl.org/dcx/lrmi-vocabs/learningResourceType/"
+                  "url": "https://test.skohub.io/acka47/lrmi-resource-types/heads/master/purl.org/dcx/lrmi-vocabs/learningResourceType/"
                 }
               },
             "properties":{
@@ -272,6 +272,9 @@
             "items": {
                 "type":"string",
                 "format":"uri"
+            },
+            "_display":{
+                "placeholder": "The URL of a resource this OER is based on"
             }
         }
     },
