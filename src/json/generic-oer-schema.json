@@ -1,8 +1,11 @@
 {
     "$schema":"http://json-schema.org/draft-04/schema#",
     "title":"OER",
-    "description":"An Open Educational Resource",
+    "description":"This is a generic JSON schema for describing an Open Educational Resource with schema.org",
     "type":"object",
+    "default": {
+        "@context": "http://schema.org/"
+      },
     "properties":{
         "@context":{
             "type":"string",
@@ -22,13 +25,17 @@
         "type":{
             "title":"Type",
             "type":"string",
+            "default": "CreativeWork",
             "enum":[
-                "CreativeWork",
-                "VideoObject",
                 "AudioObject",
+                "Book",
+                "Course",
+                "CreativeWork",
                 "DataDownload",
                 "ImageObject",
-                "PresentationDigitalDocument"
+                "PresentationDigitalDocument",
+                "SoftwareApplication",
+                "VideoObject"
             ]
         },
         "name":{
@@ -39,13 +46,13 @@
             }
         },
         "creator":{
-            "title":"Creator(s)",
+            "title":"Creator",
             "type":"array",
             "items":{
                 "type":"object",
                 "properties":{
                     "type":{
-                        "title":"Typ",
+                        "title":"Type",
                         "type":"string",
                         "enum":[
                             "Person",
@@ -97,7 +104,7 @@
                             "id":{
                                 "type":"string",
                                 "enum":[
-                                    "https://w3id.org/class/hochschulfaechersystematik/scheme#"
+                                    "https://w3id.org/class/esc/scheme"
                                 ]
                             }
                         }
@@ -143,6 +150,108 @@
             "title":"Image",
             "type":"string",
             "format":"uri"
+        },
+        "dateCreated": {
+            "title": "Creation Date",
+            "type": "string",
+            "format": "date"
+        },
+        "inLanguage": {
+            "title": "Language",
+            "type": "string"
+        },
+        "publisher":{
+            "title":"Publisher",
+            "type":"array",
+            "items":{
+                "type":"object",
+                "properties":{
+                    "type":{
+                        "title":"Type",
+                        "type":"string",
+                        "enum":[
+                            "Organization"
+                        ]
+                    },
+                    "id":{
+                        "title":"URL",
+                        "type":"string",
+                        "format":"uri"
+                    },
+                    "name":{
+                        "title":"Name",
+                        "type":"string"
+                    }
+                },
+                "required":[
+                    "name",
+                    "type"
+                ]
+            }
+        },
+        "learningResourceType":{
+            "title": "Learning Resource Type",
+            "type":"object",
+            "_widget":"SkohubLookup",
+            "properties":{
+                "type":{
+                    "type":"string",
+                    "enum":[
+                        "Concept"
+                    ]
+                },
+                "id":{
+                    "type":"string",
+                    "format":"uri"
+                },
+                "inScheme":{
+                    "type":"object",
+                    "properties":{
+                        "id":{
+                            "type":"string",
+                            "enum":[
+                                "http://purl.org/dcx/lrmi-vocabs/learningResourceType/"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "audience":{
+            "title": "Intended Audience",
+            "type":"object",
+            "_widget":"SkohubLookup",
+            "properties":{
+                "type":{
+                    "type":"string",
+                    "enum":[
+                        "Concept"
+                    ]
+                },
+                "id":{
+                    "type":"string",
+                    "format":"uri"
+                },
+                "inScheme":{
+                    "type":"object",
+                    "properties":{
+                        "id":{
+                            "type":"string",
+                            "enum":[
+                                "http://purl.org/dcx/lrmi-vocabs/educationalAudienceRole/"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "isBasedOn":{
+            "title":"Based on",
+            "type": "array",
+            "items": {
+                "type":"string",
+                "format":"uri"
+            }
         }
     },
     "required":[
