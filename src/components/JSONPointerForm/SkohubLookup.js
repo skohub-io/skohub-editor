@@ -52,13 +52,6 @@ const NestedList = ({ items, filter, highlight, setValue, setQuery, setExpanded,
   )
 }
 
-const SchemeMap = scheme => ({
-  '//purl.org/dcx/lrmi-vocabs/educationalAudienceRole/': 'https://test.skohub.io/literarymachine/skos/purl.org/dcx/lrmi-vocabs/educationalAudienceRole/',
-  '//purl.org/dcx/lrmi-vocabs/interactivityType/': 'https://test.skohub.io/literarymachine/skos/purl.org/dcx/lrmi-vocabs/interactivityType/',
-  '//oerworldmap.org/assets/json/sectors/': 'https://test.skohub.io/literarymachine/skos/oerworldmap.org/assets/json/sectors/',
-  '//oerworldmap.org/assets/json/licenses/': 'https://test.skohub.io/literarymachine/skos/oerworldmap.org/assets/json/licenses/'
-}[scheme] || scheme)
-
 const SkohubLookup = (props) => {
   const [index, setIndex] = useState(FlexSearch.create('speed'))
   const [query, setQuery] = useState(null)
@@ -67,9 +60,9 @@ const SkohubLookup = (props) => {
 
   const {
     schema, value, setValue, title, property, errors, name, required, formId, translate,
-    registerSubmitCallback
+    registerSubmitCallback, options
   } = props
-  const inScheme = SchemeMap(schema.properties.inScheme.properties.id.enum[0].replace(/^https?:/, ''))
+  const schemaLocation = (options.url || schema.properties.inScheme.properties.id.enum[0]).replace(/^https?:/, '')
 
   value && registerSubmitCallback(data => {
     fetch(value.id.replace(/^http:/, '')).then(response => {
@@ -90,14 +83,14 @@ const SkohubLookup = (props) => {
   })
 
   useEffect(() => {
-    fetch(inScheme, {
+    fetch(schemaLocation, {
       headers: {
         Accept: 'application/json'
       }
     }).then(response => response.json())
       .then(setScheme)
 
-    fetch(inScheme, {
+    fetch(schemaLocation, {
       headers: {
         Accept: 'text/index'
       }
