@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "OER",
   "description": "An Open Educational Resource",
   "type": "object",
@@ -21,6 +21,11 @@
       "title": "URL",
       "type": "string",
       "format": "uri"
+    },
+    "date": {
+      "title": "Date",
+      "type": "string",
+      "format": "date"
     },
     "type": {
       "title": "Type",
