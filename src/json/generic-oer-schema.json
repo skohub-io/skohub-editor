@@ -121,7 +121,12 @@
         "license":{
             "title":"License",
             "type":"object",
-            "_widget":"SkohubLookup",
+            "_widget": {
+                "type": "SkohubLookup",
+                "options": {
+                  "url": "https://test.skohub.io/literarymachine/skos/oerworldmap.org/assets/json/licenses/"
+                }
+              },
             "properties":{
                 "type":{
                     "type":"string",
@@ -154,11 +159,17 @@
         "dateCreated": {
             "title": "Creation Date",
             "type": "string",
-            "format": "date"
+            "format": "date",
+            "_display":{
+                "placeholder": "YYYY-MM-DD"
+            }
         },
         "inLanguage": {
             "title": "Language",
-            "type": "string"
+            "type": "string",
+            "_display":{
+                "placeholder": "The language of the resource"
+            }
         },
         "publisher":{
             "title":"Publisher",
@@ -192,7 +203,12 @@
         "learningResourceType":{
             "title": "Learning Resource Type",
             "type":"object",
-            "_widget":"SkohubLookup",
+            "_widget": {
+                "type": "SkohubLookup",
+                "options": {
+                  "url": "https://test.skohub.io/acka47/lrmi/heads/master/purl.org/dcx/lrmi-vocabs/learningResourceType/"
+                }
+              },
             "properties":{
                 "type":{
                     "type":"string",
@@ -220,7 +236,12 @@
         "audience":{
             "title": "Intended Audience",
             "type":"object",
-            "_widget":"SkohubLookup",
+            "_widget": {
+                "type": "SkohubLookup",
+                "options": {
+                  "url": "https://skohub.io/acka47/lrmi/heads/master/purl.org/dcx/lrmi-vocabs/educationalAudienceRole/"
+                }
+              },
             "properties":{
                 "type":{
                     "type":"string",
