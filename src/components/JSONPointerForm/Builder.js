@@ -2,6 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import merge from 'deepmerge'
+import { isString } from 'lodash'
 
 import Fieldset from './Fieldset'
 import Input from './Input'
@@ -64,11 +65,16 @@ class Builder extends React.Component {
       locales
     }
 
-    if (schema._widget && widgetsObj[schema._widget]) {
-      const Widget = widgetsObj[schema._widget]
-      return <Widget {...props} schema={schema} />
-    } else if (schema._widget) {
-      console.warn('Widget not found', schema._widget)
+    if (schema._widget) {
+      const [ widgetType, widgetOptions ] = isString(schema._widget)
+        ? [ schema._widget, {} ]
+        : [ schema._widget.type, schema._widget.options || {} ]
+      if (widgetsObj[widgetType]) {
+        const Widget = widgetsObj[widgetType]
+        return <Widget {...props} options={widgetOptions} schema={schema} />
+      } else {
+        console.warn('Widget not found', widgetType)
+      }
     }
 
     switch (schema.type) {
