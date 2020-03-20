@@ -271,10 +271,10 @@
             "type": "array",
             "items": {
                 "type":"string",
-                "format":"uri"
-            },
-            "_display":{
-                "placeholder": "The URL of a resource this OER is based on"
+                "format":"uri",
+                "_display":{
+                    "placeholder": "The URL of a resource this OER is based on"
+            }
             }
         }
     },
