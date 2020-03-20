@@ -20,7 +20,10 @@
     "id": {
       "title": "URL",
       "type": "string",
-      "format": "uri"
+      "format": "uri",
+      "_display": {
+        "placeholder": "The URL of the resource"
+      }
     },
     "type": {
       "title": "Type",
@@ -66,7 +69,10 @@
           },
           "name": {
             "title": "Name",
-            "type": "string"
+            "type": "string",
+            "_display": {
+                "placeholder": "The creator's name"
+              }
           }
         },
         "required": [
@@ -79,7 +85,8 @@
       "title": "Description",
       "type": "string",
       "_display": {
-        "rows": 5
+        "rows": 5,
+        "placeholder": "A short description of the resource"
       }
     },
     "about": {
@@ -154,7 +161,10 @@
     "image": {
       "title": "Image",
       "type": "string",
-      "format": "uri"
+      "format": "uri",
+      "_display": {
+        "placeholder": "A link to an image of the resource"
+      }
     },
     "dateCreated": {
       "title": "Creation Date",
@@ -191,7 +201,10 @@
           },
           "name": {
             "title": "Name",
-            "type": "string"
+            "type": "string",
+            "_display": {
+                "placeholder": "The publisher's name"
+              }
           }
         },
         "required": [
