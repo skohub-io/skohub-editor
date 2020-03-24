@@ -68,6 +68,17 @@ class SkohubEditor extends React.Component {
       state: { json, schema, schemaURL, view }
     } = this
 
+    let error
+
+    const parsedSchema = schema && JsonSchema(schema).get('/')
+    let validateSchema = null
+
+    try {
+      validateSchema = parsedSchema && validate(parsedSchema)
+    } catch (err) {
+      error = err
+    }
+
     return (
       <div className="wrapper">
         <Header
@@ -88,21 +99,21 @@ class SkohubEditor extends React.Component {
         </div>
 
         <main className={`content ${view}`}>
-          {schema && (
+          {parsedSchema && validateSchema && (
             <>
               <Form
                 data={json}
                 onChange={data => {
                   this.setState({ json: data })
                 }}
-                validate={validate(JsonSchema(schema).get('/'))}
+                validate={validateSchema}
                 onSubmit={(data) => {
                   console.log(data)
                   this.setState({ json: data })
                 }}
               >
                 <Builder
-                  schema={JsonSchema(schema).get('/')}
+                  schema={parsedSchema}
                   widgets={{ SkohubLookup }}
                 />
                 <div className="buttons">
@@ -113,7 +124,6 @@ class SkohubEditor extends React.Component {
               {Object.values(json).length ? (
                 <Preview
                   json={json}
-                  validate={validate(JsonSchema(schema).get('/'))}
                   clear={() => {
                     if (confirm('Any unsaved progress will be lost')) {
                       this.setState({
@@ -128,6 +138,12 @@ class SkohubEditor extends React.Component {
                 </div>
               )}
             </>
+          )}
+
+          {error && (
+            <div className='error'>
+              <h2>{error.message}</h2>
+            </div>
           )}
         </main>
       </div>
