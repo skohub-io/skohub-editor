@@ -51,7 +51,7 @@ class Builder extends React.Component {
     // when handling long lists. This works because the corresponding data is still present
     // in the underlying formdata; non-js clients will send incomplete data, though.
     if (className === 'hidden') {
-      return <div className="hidden" />
+      return <React.Fragment />
     }
 
     const props = {
@@ -92,7 +92,7 @@ class Builder extends React.Component {
       case 'array':
         return <List {...props} maxItems={schema.maxItems}>{this.getComponent(schema.items)}</List>
       case 'object':
-        return (
+        return schema.properties ? (
           <Fieldset {...props}>
             <div className="requiredFields">
               {schema.required && Object.keys(schema.properties)
@@ -119,7 +119,7 @@ class Builder extends React.Component {
               }
             </div>
           </Fieldset>
-        )
+        ) : <React.Fragment />
       case 'null':
       default:
         console.warn('Could not determine form component for', schema)
