@@ -37,7 +37,7 @@ const Textarea = ({
       autoFocus={shouldFormComponentFocus}
       onFocus={appendOnFocus}
       onChange={e => setValue(e.target.value)}
-      rows={display.rows || 10}
+      rows={display && display.rows || 10}
     />
   </div>
 )
