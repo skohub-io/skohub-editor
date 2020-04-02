@@ -76,9 +76,8 @@ const SkohubLookup = (props) => {
           'Content-Type': 'application/ld+json'
         },
         body: JSON.stringify(data)
-      })
-      .then(res => alert(res.ok ? `Published to ${label}` : `Could not publish to ${label}`))
-      .catch(e => alert(`An error has occured: ${e.message}`))
+      }).then(res => alert(res.ok ? `Published to ${label}` : `Could not publish to ${label}`))
+        .catch(e => alert(`An error has occured: ${e.message}`))
     })
   })
 
@@ -183,7 +182,8 @@ SkohubLookup.propTypes = {
   formId: PropTypes.string,
   setValue: PropTypes.func,
   registerSubmitCallback: PropTypes.func,
-  required: PropTypes.bool
+  required: PropTypes.bool,
+  options: PropTypes.objectOf(PropTypes.any)
 }
 
 export default withFormData(SkohubLookup)

@@ -66,9 +66,9 @@ class Builder extends React.Component {
     }
 
     if (schema._widget) {
-      const [ widgetType, widgetOptions ] = isString(schema._widget)
-        ? [ schema._widget, {} ]
-        : [ schema._widget.type, schema._widget.options || {} ]
+      const [widgetType, widgetOptions] = isString(schema._widget)
+        ? [schema._widget, {}]
+        : [schema._widget.type, schema._widget.options || {}]
       if (widgetsObj[widgetType]) {
         const Widget = widgetsObj[widgetType]
         return <Widget {...props} options={widgetOptions} schema={schema} />

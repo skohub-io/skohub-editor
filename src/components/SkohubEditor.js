@@ -20,7 +20,11 @@ class SkohubEditor extends React.Component {
 
     var parameters = [...url.searchParams].filter(([key]) => key !== 'schema')
     const json = parameters.reduce((obj, item) => {
-      obj[item[0]] = decodeURIComponent(item[1])
+      try {
+        obj[item[0]] = JSON.parse(decodeURIComponent(item[1]))
+      } catch (e) {
+        obj[item[0]] = decodeURIComponent(item[1])
+      }
       return obj
     }, {})
 
