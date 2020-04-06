@@ -12,9 +12,10 @@ npm install
 
 ### Run in development mode
 ```
-npm start
+PORT=9004 npm start
 ```
-A development server will be running on [localhost:9090](http://localhost:9090)
+A development server will be running on [localhost:9004](http://localhost:9004).
+Omiting `PORT` will start the server at port 9090.
 
 ### Build for production
 ```
@@ -24,7 +25,7 @@ A new build will be at `dist/`
 
 ### Build and serve for production
 ```
-npm run serve
+PORT=9005 npm run serve
 ```
-The content of the new build will be available on [localhost:8081](http://localhost:8081)
-
+The content of the new build will be available on [localhost:9005](http://localhost:9005).
+Omitting `PORT` will start the server at port 8080.
