@@ -38,9 +38,7 @@ PID_OF_SKOHUB_EDITOR="$(pgrep -P $(pgrep -P $PID))"
 if [ $PID_OF_SKOHUB_EDITOR ]; then
       echo $PID_OF_SKOHUB_EDITOR > $NAME.pid
    else
-      echo "Couldn' start $NAME. Maybe there is already a programm running on port $PORT."
-      echo "Let's look with lsof $(lsof -i:$PORT)"
-      echo "you may have to kill the process yourself."
+      echo "Couldn' start $NAME"
       exit 1
    fi
 exit 0
