@@ -2,7 +2,7 @@
 # to your need
 # and then copied to /etc/monit/conf.d/
 # first, ensure to have copied the init.d sript to its place
-check host skohub-pubsub with address 127.0.0.1
+check host skohub-editor with address 127.0.0.1
    start program = "/bin/bash /etc/init.d/skohub-editor.sh start"
    stop program = "/bin/bash /etc/init.d/skohub-editor.sh stop"
    as uid $YOUR_SKOHUB_EDITOR_UID and gid $YOUR_SKOHUB_EDITOR_GID
