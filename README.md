@@ -29,3 +29,6 @@ PORT=9005 npm run serve
 ```
 The content of the new build will be available on [localhost:9005](http://localhost:9005).
 Omitting `PORT` will start the server at port 8080.
+
+### start scripts
+You may want to use the start scripts in `scripts/` to manage via init and to monitor them with `monit`.
