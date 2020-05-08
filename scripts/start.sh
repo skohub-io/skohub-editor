@@ -17,6 +17,7 @@ if [ -n "$(lsof -i:$PORT)" ]; then
    exit 1
 fi
 
+npm install webpack
 # install and use proper node version
 export NVM_DIR="$HOME/.nvm"
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh # loads nvm
