@@ -3,6 +3,8 @@
 ### BEGIN INIT INFO
 # Provides:          skohub-editor
 # Should-Start:      $monit
+# Required-Start:
+# Required-Stop:
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
 # Short-Description: skohub-editor as a node server
