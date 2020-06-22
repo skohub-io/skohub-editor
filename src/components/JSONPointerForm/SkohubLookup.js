@@ -68,7 +68,7 @@ const SkohubLookup = (props) => {
     fetch(value.id.replace(/^http:/, '')).then(response => {
       const actor = new URL(response.url).pathname.substring(1)
       const label = translate(value.prefLabel)
-      fetch(`https://test.skohub.io/inbox?actor=${actor}`, {
+      fetch(`/inbox?actor=${actor}`, {
         method: 'post',
         mode: 'cors',
         headers: {
