@@ -1,6 +1,6 @@
 # skohub-editor
 
-The [SkoHub](https://skohub.io) editor will run in the browser and enable structured description of educational resources published anywhere on the web. It includes validation of the entered content for each field and lookup of controlled values via the API provided by [skohub-vocabs](https://github.com/hbz/skohub-vocabs).
+The [SkoHub](https://skohub.io) editor will run in the browser and enable structured description of educational resources published anywhere on the web. It includes validation of the entered content for each field and lookup of controlled values via the API provided by [skohub-vocabs](https://github.com/hbz/skohub-vocabs). For usage & implementation details see the [blog post](https://blog.lobid.org/2020/03/31/skohub-editor.html).
 
 
 ## Set up
