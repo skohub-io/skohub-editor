@@ -1,8 +1,8 @@
 import React from 'react'
 import moment from 'moment'
 
-const translate = key => (
-  (key && typeof key === 'string')
+const translate = key => key && (
+  (typeof key === 'string')
     ? key
     : (Object.entries(key).filter(([, value]) => !!value).shift() || []).pop() || key
 )
