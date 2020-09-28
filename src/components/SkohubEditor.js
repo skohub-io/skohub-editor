@@ -3,7 +3,6 @@ import refParser from 'json-schema-ref-parser';
 
 import Form from './JSONPointerForm/Form'
 import Builder from './JSONPointerForm/Builder'
-import JsonSchema from './JSONPointerForm/JsonSchema'
 import validate from './JSONPointerForm/validate'
 import SkohubLookup from './JSONPointerForm/SkohubLookup'
 
@@ -77,12 +76,10 @@ class SkohubEditor extends React.Component {
     } = this
 
     let error
-
-    const parsedSchema = schema && JsonSchema(schema).get('/')
     let validateSchema = null
 
     try {
-      validateSchema = parsedSchema && validate(parsedSchema)
+      validateSchema = schema && validate(schema)
     } catch (err) {
       error = err
     }
@@ -107,7 +104,7 @@ class SkohubEditor extends React.Component {
         </div>
 
         <main className={`content ${view}`}>
-          {parsedSchema && validateSchema && (
+          {schema && validateSchema && (
             <>
               <Form
                 data={json}
@@ -121,7 +118,7 @@ class SkohubEditor extends React.Component {
                 }}
               >
                 <Builder
-                  schema={parsedSchema}
+                  schema={schema}
                   widgets={{ SkohubLookup }}
                 />
                 <div className="buttons">
