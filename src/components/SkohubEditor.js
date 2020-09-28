@@ -1,4 +1,5 @@
 import React from 'react'
+import refParser from 'json-schema-ref-parser';
 
 import Form from './JSONPointerForm/Form'
 import Builder from './JSONPointerForm/Builder'
@@ -55,10 +56,13 @@ class SkohubEditor extends React.Component {
   setSchema (schemaURL) {
     fetch(schemaURL).then(response => {
       response.json().then(schema => {
-        const json = Object.assign({}, schema.default, this.state.json)
-        this.setState({ schema, json })
+        refParser.dereference(schema, (err, schema) => {
+          if (err) throw err
+          const json = Object.assign({}, schema.default, this.state.json)
+          this.setState({ schema, json })
+        })
       })
-    }).catch(err => console.log(err))
+    }).catch(err => console.error(err))
   }
 
   setSchemaURL (url) {

@@ -57,6 +57,7 @@
   "dependencies": {
     "ajv": "^6.12.0",
     "flexsearch": "^0.6.30",
-    "http-server": "^0.12.1"
+    "http-server": "^0.12.1",
+    "json-schema-ref-parser": "^9.0.6"
   }
 }
