@@ -5,7 +5,7 @@ The [SkoHub](https://skohub.io) editor will run in the browser and enable struct
 
 ## Set up
 ```
-git clone https://github.com/hbz/skohub-editor.git
+git clone https://github.com/skohub-io/skohub-editor.git
 cd skohub-editor
 npm install
 ```
