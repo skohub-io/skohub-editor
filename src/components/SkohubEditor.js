@@ -1,3 +1,5 @@
+/* global window, localStorage, fetch, confirm */
+
 import React from 'react'
 import refParser from 'json-schema-ref-parser';
 
@@ -33,7 +35,9 @@ class SkohubEditor extends React.Component {
       // Empty try/catch to avoid the extension crash on Firefox
       // https://bugzilla.mozilla.org/show_bug.cgi?id=1323228
       savedSchemaURL = localStorage.getItem('schemaURL')
-    } catch (error) {}
+    } catch (error) {
+      console.error(error)
+    }
 
     this.state = {
       json,
