@@ -1,3 +1,5 @@
+/* global fetch, alert */
+
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import FlexSearch from 'flexsearch'

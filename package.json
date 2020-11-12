@@ -7,7 +7,7 @@
     "start": "NODE_ENV=development webpack-dev-server --mode development",
     "serve": "NODE_ENV=production npm run build && http-server dist",
     "build": "NODE_ENV=production webpack --mode production",
-    "test": "eslint ."
+    "test": "eslint src/"
   },
   "keywords": [],
   "author": "",

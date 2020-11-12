@@ -54,7 +54,7 @@ class Api {
     return Promise.resolve({ member: [] })
   }
 
-  vocab (url) {
+  vocab () {
     return Promise.resolve({ member: [] })
   }
 }
