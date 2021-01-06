@@ -13,7 +13,7 @@ import Preview from './Preview'
 import '../styles/components/FormsStructure.pcss'
 import '../styles/formStyle.pcss'
 
-const DEFAULT_SCHEMA = 'https://dini-ag-kim.github.io/lrmi-profil/draft/schemas/schema.json'
+const DEFAULT_SCHEMA = 'https://dini-ag-kim.github.io/lrmi-profile/draft/schemas/schema.json'
 
 class SkohubEditor extends React.Component {
   constructor (props) {
