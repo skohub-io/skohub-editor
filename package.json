@@ -56,7 +56,7 @@
     "webpack-merge": "^4.1.4"
   },
   "dependencies": {
-    "ajv": "^6.12.0",
+    "ajv": "^6.12.3",
     "cross-env": "^7.0.2",
     "dot-prop": "^5.1.1",
     "flexsearch": "^0.6.30",
