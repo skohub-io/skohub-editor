@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  dev:
+  editor:
     build:
       context: .
       dockerfile: Dockerfile
