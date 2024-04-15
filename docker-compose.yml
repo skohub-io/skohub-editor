@@ -5,8 +5,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    volumes:
-      - .:/app # Links the source files to the running container
     ports:
       - "8080:8080"
 

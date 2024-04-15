@@ -2,16 +2,12 @@ FROM node:14
 
 WORKDIR /app
 
-RUN chown -R node:node /app
+COPY package.json package.json
+COPY package-lock.json package-lock.json
 
-COPY --chown=node:node . .
+RUN npm i
 
-USER node
-
-RUN npm i --only=production
-
-# disable notifier warning
-RUN npm config set update-notifier false
+COPY . .
 
 CMD ["npm", "run", "serve"]
 
