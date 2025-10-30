@@ -1,7 +1,7 @@
-# skohub-editor
+| :exclamation:  Due to lacking resources for maintenance, in 2022 we decided to shut down the SkoHub PubSub demo server at skohub.io and to stop development. This repo is now an archive.   |
+|----------------------------------------------|
 
-The [SkoHub](https://skohub.io) editor will run in the browser and enable structured description of educational resources published anywhere on the web. It includes validation of the entered content for each field and lookup of controlled values via the API provided by [skohub-vocabs](https://github.com/hbz/skohub-vocabs). For usage & implementation details see the [blog post](https://blog.lobid.org/2020/03/31/skohub-editor.html).
-
+The [SkoHub](https://skohub.io) editor will run in the browser and enable structured description of educational resources published anywhere on the web. It includes validation of the entered content for each field and lookup of controlled values via the API provided by [skohub-vocabs](https://github.com/hbz/skohub-vocabs). For usage & implementation details see the [blog post](https://blog.skohub.io/2020-03-31-skohub-editor/).
 
 ## Set up
 ```
@@ -35,6 +35,6 @@ You may want to use the start scripts in `scripts/` to manage via init and to mo
 
 ## Credits
 
-The project to create a stable beta version of SkoHub has been funded by the North-Rhine Westphalian Library Service Centre (hbz) and carried out in cooperation with [graphthinking GmbH](https://graphthinking.com/) in 2019/2020.
+The project to create a stable beta version of SkoHub has been funded by the North-Rhine Westphalian Library Service Centre (hbz) and carried out in cooperation with graphthinking GmbH in 2019/2020.
 
-<a target="_blank" href="https://www.hbz-nrw.de"><img src="https://skohub-io.github.io/skohub.io/img/hbz-logo.svg" width="120px"></a>
+<a target="_blank" href="https://www.hbz-nrw.de"><img src="https://skohub-io.github.io/skohub.io/img/logo-hbz-color.svg" width="120px"></a>
